@@ -1,0 +1,15 @@
+.splash-wrapper {
+	display: flex;
+	justify-content: center;
+	height: 844px;
+	align-items: center;
+
+	.logo-wrapper {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		img {
+			margin-right: 5px;
+		}
+	}
+}
