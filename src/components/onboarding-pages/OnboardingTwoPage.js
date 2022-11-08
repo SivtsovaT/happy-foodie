@@ -19,8 +19,8 @@ const OnboardingTwoPage = () => {
 						<div className="rectangle-red"></div>
 						<div className="rectangle-grey"></div>
 					</div>
-					<Link to='/second'>
-						<button className="btn btn-282">Get Starte</button>
+					<Link to='/login'>
+						<button className="btn btn-282">Get Started</button>
 					</Link>
 				</div>
 			</div>
