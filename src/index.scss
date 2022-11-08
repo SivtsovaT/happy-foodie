@@ -1,0 +1,136 @@
+//fonts
+
+@font-face {
+  font-family: Montserrat-Black;
+  src: url("/fonts/Montserrat-Black.ttf");
+}
+@font-face {
+  font-family: Montserrat-Medium;
+  src: url("/fonts/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: Poppins;
+  src: url("/fonts/Poppinsbold.ttf");
+}
+
+//colors
+
+:root {
+  --main-red-color: #E94040;
+  --dark-red-color: #af532d;
+  --main-white-color: #ffff;
+  --main-yellow-color: #FFC529;
+  --main-green-color: #53D776;
+  --main-grey-color: #FCFCFC;
+  --main-dark-violet: #27252a;
+  --dark-grey-color: #BBBBBB;
+  --light-grey-color: #D1D1D1;
+  --darkest-grey-color: #555555;
+}
+
+
+body {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1;
+  height: 844px;
+
+}
+
+.content {
+  margin: 0 auto;
+  background: radial-gradient(black, #3b1919);
+  max-width: 390px;
+}
+
+.btn {
+  height: 60px;
+  border-radius: 100px;
+  font-family: Montserrat;
+  background-color: var(--main-red-color);
+  border: none;
+  cursor: pointer;
+  transition: 0.5s all;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 32px;
+  text-align: center;
+  color: var(--main-white-color);
+  &:hover {
+    box-shadow: 7px -7px 17px var(--dark-red-color);
+    border: none;
+  }
+}
+
+
+.btn-282 {
+  width: 282px;
+}
+
+.btn-295 {
+  width: 295px;
+}
+
+.btn-322 {
+  width: 322px;
+}
+
+.btn-143 {
+  width: 143px;
+  height: 44px;
+  background: var(--main-white-color);
+  border-radius: 30px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13.5px;
+  line-height: 22px;
+  text-transform: uppercase;
+  color: var(--main-red-color);
+}
+
+.btn-101 {
+  width: 101px;
+  height: 49px;
+  background: var(--main-red-color);
+  box-shadow: 0px 10px 30px rgba(202, 66, 17, 0.1);
+  border-radius: 100px;
+  color: var(--main-white-color);
+}
+
+.input-log {
+  width: 285px;
+  border-radius: 100px;
+  border: 1px var(--main-grey-color) solid;
+  background: radial-gradient(black, #3b1919);
+  color: var(--main-grey-color);
+  padding-left: 15px;
+}
+.input-log:focus-visible{
+  border: 1px solid var(--main-element-color);
+  border: 1px var(--main-red-color) solid;
+  outline: none;
+}
+.height-67 {
+  height: 67px;
+}
+
+.height-58 {
+  height: 58px;
+}
+
+.rectangle-red {
+  width: 22px;
+  height: 7px;
+  background: var(--main-red-color);
+  border-radius: 6px;
+  margin-right: 9px;
+}
+.rectangle-grey {
+  width: 13px;
+  height: 7px;
+  background: var(--light-grey-color);
+  border-radius: 6px;
+  margin-right: 9px;
+}
