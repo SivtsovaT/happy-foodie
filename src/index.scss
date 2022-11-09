@@ -42,18 +42,19 @@ body {
   margin: 0 auto;
   background: radial-gradient(black, #3b1919);
   max-width: 390px;
+  height: 844px;
 }
 
 .btn {
   height: 60px;
   border-radius: 100px;
-  font-family: Montserrat;
+  font-family: "Roboto Thin";
   background-color: var(--main-red-color);
   border: none;
   cursor: pointer;
   transition: 0.5s all;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 900;
   line-height: 32px;
   text-align: center;
   color: var(--main-white-color);
@@ -112,6 +113,11 @@ body {
   border: 1px var(--main-red-color) solid;
   outline: none;
 }
+
+.width-295 {
+  width: 295px;
+}
+
 .height-67 {
   height: 67px;
 }
