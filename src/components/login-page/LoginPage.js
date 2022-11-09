@@ -59,7 +59,6 @@ const LoginPage = () => {
 						<div className='password-image'>
 							<img  src={hide} alt='hide'/>
 						</div>
-
 					</div>
 				</div>
 				<Link className="forgot-pass" to='/reset'>Forgot Password?</Link>
@@ -79,7 +78,7 @@ const LoginPage = () => {
 						</div>
 					</div>
 				</div>
-				<div className="have-account">
+				<div className="have-account-block">
 					<div className="have-account-title">Don’t have an account?</div>
 					<Link className="link" to="/signup">
 						<div className="have-account-signup">Sign up</div>
