@@ -62,7 +62,7 @@ const LoginPage = () => {
 
 					</div>
 				</div>
-				<Link className="forgot-pass" to='/'>Forgot Password?</Link>
+				<Link className="forgot-pass" to='/reset'>Forgot Password?</Link>
 					<button onClick={login} className="btn btn-295">Log In</button>
 
 				<div className="login-with-wrapper">
