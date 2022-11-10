@@ -16,9 +16,7 @@ const ResetPassword = () => {
 		try {
 			const auth = getAuth();
 			await sendPasswordResetEmail(auth, email);
-			alert('Please enter correct email');
 			window.location.replace('login');
-
 		} catch {
 			alert('Could not send reset email');
 		}
@@ -45,12 +43,9 @@ const ResetPassword = () => {
 						   onChange={onChange}
 						   value={email}
 					/>
-					{/*<Link to="/menu">*/}
 						<button onClick={onSubmit} className="btn btn-295">Send new password</button>
-					{/*</Link>*/}
 				</div>
 			</div>
-
 		</div>
 	)
 }
