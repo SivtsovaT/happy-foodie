@@ -10,20 +10,20 @@
 	}
 }
 
-.header {
+.signup-header {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	color: var(--main-white-color);
 	margin-right: 75px;
-	padding-left: 40px;
-	margin-top: 110px;
+	padding-left: 42px;
+	margin-top: 51px;
 	margin-bottom: 36px;
 
 	.title {
 		font-family: Montserrat-Black;
 		font-weight: 800;
-		font-size: 27px;
+		font-size: 36px;
 		margin-bottom: 12px;
 
 	}
@@ -37,9 +37,9 @@
 
 }
 
-.input-wrapper {
+.input-signup-wrapper {
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	flex-direction: column;
 	margin-top: 24px;
 	margin-bottom: 20px;
@@ -54,6 +54,27 @@
 	}
 }
 
-.have-account {
+.have-account-signup-block {
+	display: flex;
+	flex-direction: row;
+	font-family: Montserrat;
+	font-size: 13px;
 	margin-top: 53px;
+
+
+	.have-account-title {
+		font-weight: 400;
+		color: var(--main-grey-color);
+		margin-right: 5px;
+	}
+
+	.link {
+		text-decoration: none;
+	}
+
+	.have-account-signup {
+		font-weight: 700;
+		color: var(--main-red-color);
+		text-decoration: none;
+	}
 }
