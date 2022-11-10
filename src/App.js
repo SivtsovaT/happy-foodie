@@ -6,6 +6,7 @@ import OnboardingOnePage from "./components/onboarding-pages/OnboardingOnePage";
 import OnboardingTwoPage from "./components/onboarding-pages/OnboardingTwoPage";
 import LoginPage from "./components/login-page/LoginPage";
 import ResetPassword from "./components/reset-password-page/ResetPassword";
+import SignUpPage from "./components/sign-up-page/SignUpPage";
 
 const App = () => {
     return (
@@ -16,6 +17,8 @@ const App = () => {
                 <Route path="onboard2" element={<OnboardingTwoPage/>}/>
                 <Route path="login" element={<LoginPage/>}/>
                 <Route path="reset" element={<ResetPassword/>}/>
+                <Route path="signup" element={<SignUpPage/>}/>
+
             </Routes>
         </>
     )
