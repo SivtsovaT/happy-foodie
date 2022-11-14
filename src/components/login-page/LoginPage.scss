@@ -61,6 +61,10 @@
 				justify-content: center;
 				align-items: center;
 				margin-bottom: 79px;
+				&:hover {
+					box-shadow: 7px -7px 17px var(--dark-red-color);
+					border: none;
+				}
 			}
 		}
 

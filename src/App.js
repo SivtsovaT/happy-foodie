@@ -7,6 +7,7 @@ import OnboardingTwoPage from "./components/onboarding-pages/OnboardingTwoPage";
 import LoginPage from "./components/login-page/LoginPage";
 import ResetPassword from "./components/reset-password-page/ResetPassword";
 import SignUpPage from "./components/sign-up-page/SignUpPage";
+import EnterPhoneNumber from "./components/phone-signup-page/enter-number-page/EnterPhoneNumber";
 
 const App = () => {
     return (
@@ -18,7 +19,7 @@ const App = () => {
                 <Route path="login" element={<LoginPage/>}/>
                 <Route path="reset" element={<ResetPassword/>}/>
                 <Route path="signup" element={<SignUpPage/>}/>
-
+                <Route path="phone" element={<EnterPhoneNumber/>}/>
             </Routes>
         </>
     )

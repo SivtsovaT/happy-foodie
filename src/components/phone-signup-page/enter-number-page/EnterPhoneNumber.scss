@@ -1,0 +1,75 @@
+.phone-header {
+	display: flex;
+	justify-content: center;
+	color: var(--main-white-color);
+	margin-top: 51px;
+	margin-bottom: 36px;
+
+	.descr {
+		font-family: Montserrat;
+		font-weight: 500;
+		font-size: 24px;
+	}
+}
+
+.input-phone-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	margin-top: 40px;
+	input {
+		margin-bottom: 27px;
+	}
+	button {
+		text-transform: uppercase;
+		font-weight: 900;
+		font-size: 15px;
+		width: 305px;
+	}
+}
+
+.otp-header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	color: var(--main-white-color);
+	margin-top: 30px;
+	margin-bottom: 48px;
+
+	.otp-title {
+		font-family: Montserrat-Black;
+		font-weight: 700;
+		font-size: 34px;
+		margin-bottom: 12px;
+		display: flex;
+		justify-content: center;
+
+		.otp-value {
+			margin-right: 5px;
+
+		}
+	}
+
+	.descr {
+		font-family: Montserrat;
+		font-weight: 400;
+		font-size: 18px;
+
+	}
+}
+
+.otp-input-wrapper {
+	display: flex;
+	justify-content: center;
+	margin-top: 70px;
+}
+
+.send-again {
+	display: flex;
+	justify-content: center;
+	font-family: Montserrat-Medium;
+	color: var(--main-red-color);
+	margin-top: 450px;
+}
