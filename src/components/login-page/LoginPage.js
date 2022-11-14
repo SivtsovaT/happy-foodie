@@ -73,9 +73,12 @@ const LoginPage = () => {
 						<div className="social-round">
 							<img src={google} alt="google"/>
 						</div>
-						<div className="social-round">
-							<img src={apple} alt="apple"/>
-						</div>
+						<Link to="/phone">
+							<div className="social-round">
+								<img src={apple} alt="apple"/>
+							</div>
+
+						</Link>
 					</div>
 				</div>
 				<div className="have-account-block">
