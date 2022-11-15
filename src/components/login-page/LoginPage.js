@@ -28,9 +28,7 @@ const LoginPage = () => {
 			);
 			console.log(user);
 			setTimeout(() => {
-				//this address will be changed in the future
-				window.location.replace("onboard1");
-
+				window.location.replace("profile");
 			}, 3000);
 		} catch {
 			alert('Incorrect email or password')
@@ -77,7 +75,6 @@ const LoginPage = () => {
 							<div className="social-round">
 								<img src={apple} alt="apple"/>
 							</div>
-
 						</Link>
 					</div>
 				</div>

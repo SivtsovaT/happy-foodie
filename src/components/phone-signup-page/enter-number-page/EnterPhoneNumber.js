@@ -64,7 +64,7 @@ const EnterPhoneNumber = () => {
 				console.log(user);
 				setTimeout(() => {
 					//this address will be changed in the future
-					window.location.replace("onboard1");
+					window.location.replace("profile");
 
 				}, 3000);
 
