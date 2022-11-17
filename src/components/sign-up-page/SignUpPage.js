@@ -3,8 +3,10 @@ import './SignUpPage.scss';
 import {Link} from "react-router-dom";
 import back from "../../images/back.png";
 import hide from "../../images/hide.png";
-import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
-import app from "../../firebase";
+import {createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
+import {auth} from "../../firebase";
+import {db} from "../../firebase";
+import {collection} from "firebase/firestore";
 
 const SignUpPage = () => {
 	const [passwordShown, setPasswordShown] = useState(true);
@@ -12,43 +14,33 @@ const SignUpPage = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
+	const usersCollectionRef = collection(db, "users");
 
 	const togglePassword = () => {
 		setPasswordShown(!passwordShown);
 	};
 
-	const auth = getAuth(app);
-
-
-	const handleSignup = (event) => {
+	const handleSignup = async (event) => {
 		event.preventDefault();
-		if (name.length == 0) {
+		if (name.length === 0) {
 			alert('The field "name" cannot be empty')
 		} else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
 			alert('Please enter a valid email')
-		} else if (password.length == 0 && password.length < 6) {
+		} else if (password.length < 6) {
 			alert("Password length cannot be less than 6 characters")
 		} else if (password.valueOf() !== confirmPassword.valueOf()) {
 			alert("Confirm your password please")
 		} else {
-			createUserWithEmailAndPassword(auth, email, password)
-				.then((userCredential) => {
-					const user = userCredential.user;
-					console.log(user)
-					alert('Registration successful');
-					setTimeout(() => {
-						//this address will be changed in the future
-						window.location.replace("onboard1");
-
-					}, 3000);
-				})
-				.catch((error) => {
-					const errorCode = error.code;
-					alert(errorCode)
-				})
+			const { user } = await createUserWithEmailAndPassword(auth, email, password)
+			console.log(`User ${user.uid} created`)
+			await updateProfile(user, {
+				displayName: name
+			});
+			setTimeout(() => {
+				window.location.replace("profile");
+			}, 3000);
 		}
 	}
-
 	return (
 		<div className="content">
 			<div className="wrapper">
@@ -112,7 +104,6 @@ const SignUpPage = () => {
 					</Link>
 				</div>
 			</div>
-
 		</div>
 	)
 }
