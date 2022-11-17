@@ -8,6 +8,7 @@ import LoginPage from "./components/login-page/LoginPage";
 import ResetPassword from "./components/reset-password-page/ResetPassword";
 import SignUpPage from "./components/sign-up-page/SignUpPage";
 import EnterPhoneNumber from "./components/phone-signup-page/enter-number-page/EnterPhoneNumber";
+import ProfilePage from "./components/profile-page/ProfilePage";
 
 const App = () => {
     return (
@@ -20,6 +21,7 @@ const App = () => {
                 <Route path="reset" element={<ResetPassword/>}/>
                 <Route path="signup" element={<SignUpPage/>}/>
                 <Route path="phone" element={<EnterPhoneNumber/>}/>
+                <Route path="profile" element={<ProfilePage/>}/>
             </Routes>
         </>
     )
