@@ -9,6 +9,9 @@ import ResetPassword from "./components/reset-password-page/ResetPassword";
 import SignUpPage from "./components/sign-up-page/SignUpPage";
 import EnterPhoneNumber from "./components/phone-signup-page/enter-number-page/EnterPhoneNumber";
 import ProfilePage from "./components/profile-page/ProfilePage";
+import MenuPage from "./components/menu-page/MenuPage";
+import HomePage from "./components/home-page/HomePage";
+import AddNewAddressPage from "./components/add-new-address-page/AddNewAddressPage";
 
 const App = () => {
     return (
@@ -22,6 +25,9 @@ const App = () => {
                 <Route path="signup" element={<SignUpPage/>}/>
                 <Route path="phone" element={<EnterPhoneNumber/>}/>
                 <Route path="profile" element={<ProfilePage/>}/>
+                <Route path="menu" element={<MenuPage/>}/>
+                <Route path="home" element={<HomePage/>}/>
+                <Route path="address" element={<AddNewAddressPage/>}></Route>
             </Routes>
         </>
     )

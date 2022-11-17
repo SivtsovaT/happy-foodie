@@ -1,0 +1,42 @@
+.link-panel {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	width: 100%;
+	text-decoration: none;
+
+
+	.link-wrapper {
+		margin-top: 55px;
+		margin-left: 22px;
+	}
+	.address-title {
+		color: var(--main-white-color);
+		font-family: Roboto;
+		font-weight: 500;
+		font-size: 18px;
+		margin-top: 55px;
+		margin-left: 100px;
+	}
+}
+.add-address {
+	margin-left: 27px;
+}
+
+.add-user-data {
+	display: flex;
+	flex-direction: column;
+	margin-left: 27px;
+	margin-top: 20px;
+	margin-bottom: 40px;
+	.add-user-data_title {
+		font-family: 'Roboto';
+		font-style: normal;
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 19px;
+		color: var(--dark-grey-color);
+		margin-bottom: 9px;
+
+	}
+}

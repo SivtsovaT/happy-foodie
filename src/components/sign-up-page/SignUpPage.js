@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import './SignUpPage.scss';
 import {Link} from "react-router-dom";
 import back from "../../images/back.png";
@@ -6,7 +6,7 @@ import hide from "../../images/hide.png";
 import {createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
 import {auth} from "../../firebase";
 import {db} from "../../firebase";
-import {collection} from "firebase/firestore";
+import {collection, addDoc} from "firebase/firestore";
 
 const SignUpPage = () => {
 	const [passwordShown, setPasswordShown] = useState(true);
@@ -31,13 +31,16 @@ const SignUpPage = () => {
 		} else if (password.valueOf() !== confirmPassword.valueOf()) {
 			alert("Confirm your password please")
 		} else {
-			const { user } = await createUserWithEmailAndPassword(auth, email, password)
-			console.log(`User ${user.uid} created`)
+			const userCredential = await  createUserWithEmailAndPassword(auth, email, password);
+			const user = userCredential.user;
+			addDoc(usersCollectionRef, { displayName: name, email: email });
+			console.log(user);
 			await updateProfile(user, {
 				displayName: name
 			});
 			setTimeout(() => {
-				window.location.replace("profile");
+				window.location.replace("menu");
+
 			}, 3000);
 		}
 	}
@@ -104,6 +107,7 @@ const SignUpPage = () => {
 					</Link>
 				</div>
 			</div>
+
 		</div>
 	)
 }
