@@ -57,7 +57,7 @@ const ProfilePage = () => {
 
 	return (
 		<div className="content">
-			<Link to="/login" className="link-panel">
+			<Link to="/menu" className="link-panel">
 				<div className="link-wrapper">
 					<img src={back} alt="back"/>
 				</div>

@@ -1,0 +1,82 @@
+.close-wrapper {
+	width: 40px;
+	height: 40px;
+	background: #2B2534;
+	border-radius: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 30px;
+	margin-left: 21px;
+	img {
+		width: 11px;
+		height: 11px;
+	}
+}
+
+.avatar-wrapper {
+	background: var(--main-grey-color);
+	width: 88px;
+	height: 88px;
+	border-radius: 30px;
+	margin-top: 44px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	img {
+		width: 79px;
+		height: 79px;
+		border-radius: 50%;
+	}
+}
+
+.profile-total {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+
+	.profile-right {
+		img {
+			width: 270px;
+			height: 700px;
+
+		}
+	}
+	.profile-left {
+		color: var(--main-white-color);
+		font-family: Montserrat-Medium;
+		margin-left: 21px;
+		width: 100px;
+
+		.user-name {
+			font-weight: 700;
+			font-size: 16px;
+			line-height: 20px;
+			margin-top: 13px;
+		}
+		.user-email {
+			font-weight: 400;
+			font-size: 12px;
+			line-height: 150%;
+			margin-top: 1px;
+			margin-bottom: 37px;
+		}
+		.menu-link {
+			text-decoration: none;
+			color: var(--main-white-color);
+		}
+		li {
+			list-style-type: none;
+			margin-left: -35px;
+			margin-bottom: 30px;
+			font-weight: 600;
+			font-size: 14px;
+
+		}
+		button {
+			font-weight: 700;
+			font-size: 14px;
+			margin-top: 15px;
+		};
+	}
+}
