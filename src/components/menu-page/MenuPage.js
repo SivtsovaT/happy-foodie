@@ -69,7 +69,8 @@ const MenuPage = () => {
 							<li>My profile</li>
 						</Link>
 						{/*addresses will be change in the future */}
-						<Link to={"/address"} className="menu-link">
+
+            <Link to={"/address"} className="menu-link">
 							<li>My Address</li>
 						</Link>
 
