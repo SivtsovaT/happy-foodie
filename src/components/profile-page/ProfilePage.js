@@ -4,8 +4,9 @@ import back from "../../images/back.png";
 import camera from "../../images/camera.png";
 import profileGroup from "../../images/profileGroup.png";
 import {Link} from "react-router-dom";
-import {auth, upload} from "../../firebase";
-import {onAuthStateChanged} from 'firebase/auth';
+import {auth, db, upload} from "../../firebase";
+import {getAuth, onAuthStateChanged} from 'firebase/auth';
+import {setDoc, doc, getDoc} from "firebase/firestore";
 
 const ProfilePage = () => {
 	const [email, setEmail] = useState('');
@@ -14,6 +15,25 @@ const ProfilePage = () => {
 	const [photoURL, setPhotoURL] = useState(profileGroup);
 	const [photo, setPhoto] = useState(null);
 	const [loading, setLoading] = useState(false);
+
+	const [user, setUser] = useState([]);
+	const auth = getAuth();
+	const fireUser = auth.currentUser;
+
+
+	const getUserData = async () => {
+		const docRef = doc(db, "users", fireUser.uid)
+		const docSnap = await getDoc(docRef)
+
+		if (docSnap.exists()) {
+			setUser(docSnap.data())
+		} else {
+			console.log("No such document!")
+		}
+	}
+	useEffect(() => {
+		getUserData()
+	}, []);
 
 
 	const useAuth = () => {
@@ -88,7 +108,7 @@ const ProfilePage = () => {
 			</div>
 			<div className="user-data">
 				<div className="user-data_title">Phone Number</div>
-				<div className="user-data_descr">{phoneNumber}</div>
+				<div className="user-data_descr">{user.phone}</div>
 			</div>
 		</div>
 	)
