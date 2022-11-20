@@ -1,0 +1,88 @@
+[
+  {
+	"id": 1,
+	"top": true,
+	"category": "pizza",
+	"title": "Pizza Napoletana",
+	"price": 8,
+	"ingredients": "Chicken, Cheese",
+	"image": "https://www.pngitem.com/pimgs/m/649-6498875_neapolitan-pizza-png-transparent-png.png"
+  },
+  {
+	"id": 2,
+	"top": true,
+	"category": "pizza",
+	"title": "Calzone",
+	"price": 12,
+	"image": "https://www.kindpng.com/picc/m/264-2646844_calzone-pizza-png-png-download-calzone-pizza-png.png"
+  },
+  {
+	"id": 3,
+	"top": false,
+	"category": "pizza",
+	"title": "Pizza al taglio",
+	"price": 11.60,
+	"image": "https://w7.pngwing.com/pngs/485/633/png-transparent-california-style-pizza-sicilian-pizza-vegetarian-cuisine-veggie-burger-tomato-pizza-food-recipe-cheese-thumbnail.png"
+  },
+  {
+	"id": 4,
+	"top": false,
+	"title": "Romana",
+	"category": "pizza",
+	"price": 6.20,
+	"image": "https://www.nicepng.com/png/detail/68-689198_pizza-download-png-image-meat-pizza-png.png"
+  },
+  {
+	"id": 5,
+	"top": true,
+	"category": "pizza",
+	"title": "Pizza fritta",
+	"price": 14,
+	"image": "https://www.kindpng.com/picc/m/539-5396133_thumb-image-pizza-fritta-png-transparent-png.png"
+  },
+  {
+	"id": 6,
+	"top": true,
+	"category": "burger",
+	"title": "Burger Mix",
+	"price": 5,
+	"image": "https://w7.pngwing.com/pngs/446/945/png-transparent-whopper-hamburger-beefsteak-chicken-nugget-barbecue-sauce-burger-restaurant-food-beef-recipe.png"
+  },
+  {
+	"id": 7,
+	"top": false,
+	"category": "burger",
+	"title": "Easy burger",
+	"price": 8,
+	"image": "https://w7.pngwing.com/pngs/739/553/png-transparent-hamburger-veggie-burger-chicken-sandwich-fast-food-hamburger-burger-burger-sandwich-food-recipe-cheeseburger-thumbnail.png"
+  },
+  {
+	"id": 8,
+	"top": false,
+	"category": "burger",
+	"title": "Burger Lux",
+	"price": 14,
+	"image": "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png"
+  },
+  {
+	"id": 9,
+	"top": true,
+	"category": "burger",
+	"title": "Star Burger",
+	"price": 16,
+	"image": "https://img.favpng.com/15/7/7/hamburger-pizza-barbecue-sushi-meat-chop-png-favpng-qRamh70RLR1nNHgUjUhHfyaDZ_t.jpg"
+  }
+
+
+
+
+
+
+
+
+
+]
+
+
+
+

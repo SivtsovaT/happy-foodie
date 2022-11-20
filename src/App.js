@@ -31,6 +31,7 @@ const App = () => {
                 <Route path="menu" element={<MenuPage/>}/>
                 <Route path="home" element={<HomePage/>}/>
                 <Route path="address" element={<AddNewAddressPage/>}></Route>
+
             </Routes>
         </>
     )
