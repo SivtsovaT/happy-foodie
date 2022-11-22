@@ -39,7 +39,7 @@ const SignUpPage = () => {
 				displayName: name
 			});
 			setTimeout(() => {
-				window.location.replace("menu");
+				window.location.replace("home");
 
 			}, 3000);
 		}
