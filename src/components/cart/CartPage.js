@@ -1,69 +1,172 @@
 import React, {useEffect, useState} from "react";
 import "./CartPage.scss";
-import {db, auth, upload} from "../../firebase";
-import profileGroup from "../../images/profileGroup.png";
+import {db} from "../../firebase";
 import {Link} from "react-router-dom";
 import back from "../../images/back.png";
-import camera from "../../images/camera.png";
-import {getAuth, onAuthStateChanged} from 'firebase/auth';
-import {setDoc, doc, getDoc} from "firebase/firestore";
+import {getAuth} from 'firebase/auth';
+import trash from "../../images/cart/trash.png";
+import plus from "../../images/cart/plus.png";
+import minus from "../../images/cart/minuse.png";
+import edite_icon from "../../images/cart/edit-icon.png";
+import delete_icon from "../../images/cart/delete-icon.png";
+import plus_white from "../../images/cart/plus-white.png";
+import plus_big from "../../images/cart/plus-big.png";
+import box from "../../images/nav/cart-grey.png";
+import search from "../../images/nav/search.png";
+import heart from "../../images/nav/heart.png";
+import user_prof from "../../images/nav/user.png";
+import home from "../../images/nav/home-grey.png";
+import {collection, getDocs, addDoc, updateDoc, deleteDoc, doc, getDoc, setDoc, increment} from "firebase/firestore";
 
 const CartPage = () => {
-	const [email, setEmail] = useState('');
-	const [displayName, setDisplayName] = useState('');
-	const [phoneNumber, setPhoneNumber] = useState('');
-	const [photoURL, setPhotoURL] = useState(profileGroup);
-	const [photo, setPhoto] = useState(null);
-	const [loading, setLoading] = useState(false);
-
-	const [user, setUser] = useState([]);
-	const auth = getAuth();
-	const fireUser = auth.currentUser;
-
-	const useAuth = () => {
-		const [currentUser, setCurrentUser] = useState();
-		useEffect(() => {
-			const unsub =  onAuthStateChanged(auth, user => setCurrentUser(user));
-			return unsub;
-		}, [])
-		return currentUser;
-	}
-	const currentUser = useAuth();
+	const [dishes, setDishes] = useState([]);
+	const [userData, setUserData] = useState([]);
+	useEffect(() => {
+		const getUser = async () => {
+			const auth = getAuth();
+			const userId = auth.currentUser.uid;
+			const docRef = doc(db, "users", userId);
+			const docSnap = await getDoc(docRef);
+			const data = docSnap.data();
+			setUserData(data);
+		}
+		getUser();
+	});
 
 	useEffect(() => {
-		if (currentUser?.email || currentUser?.displayName || currentUser?.phoneNumber) {
-			setEmail(currentUser.email);
-			setDisplayName(currentUser.displayName);
-			setPhoneNumber(currentUser.phoneNumber);
-			console.log(currentUser)
-		}
-	}, [currentUser]);
-
-
-	const getUserData = async () => {
-		const docRef = doc(db, "users", fireUser.uid + "order")
-		const docSnap = await getDoc(docRef)
-
-		if (docSnap.exists()) {
-			setUser(docSnap.data())
-		} else {
-			console.log("No such document!")
-		}
-	}
-	useEffect(() => {
-		getUserData()
+		const getDishes = async () => {
+			const auth = getAuth();
+			const userId = auth.currentUser.uid;
+			const data = await getDocs(collection(db, `users/${userId}/cart`));
+			setDishes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+		};
+		getDishes();
 	}, []);
+
+
+	const deleteDish = async (id) => {
+		const auth = getAuth();
+		let userId = auth.currentUser.uid;
+		let productId = id;
+		let itemRef = doc(db, `users/${userId}/cart/${productId}`);
+		await deleteDoc(itemRef);
+		const data = await getDocs(collection(db, `users/${userId}/cart`));
+		setDishes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+	};
+	const increaseDish = async (id, title, price, amount, image) => {
+		const auth = getAuth();
+		let userId = auth.currentUser.uid;
+		let productId = id;
+		let itemRef = doc(db, `users/${userId}/cart/${productId}`);
+		setDoc(itemRef,{
+			title: title,
+			amount: amount + 1,
+			price: amount * price,
+			image: image
+		}, {merge: true});
+
+		const data = await getDocs(collection(db, `users/${userId}/cart`));
+		setDishes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+
+
+	}
+
 
 	return (
 		<div className="content">
-			<Link to="/home" className="link-panel">
-				<div className="link-wrapper">
-					<img src={back} alt="back"/>
+			<div className="content-cart">
+				<div className="cart-header">
+					<Link to="/home" className="cart-wrapper">
+						<div className="link-wrapper">
+							<img src={back} alt="back"/>
+						</div>
+					</Link>
+					<div className="delivery">
+						<div className="delivery-header">Delivery to</div>
+						<div className="delivery-address">{userData.region}, {userData.city}, {userData.street}
+						</div>
+					</div>
 				</div>
-			</Link>
-			<div className="user-data">
-				<div className="user-data_title">{user.title}</div>
-				<div className="user-data_title"> {user.price}</div>
+				<h2 className="your-cart">Your cart</h2>
+				<div className="products-wrapper" >
+					{dishes.map((dish) => {
+						return (
+							<div className="product-wrapper">
+								<div className="product-image">
+									<img className="cart-image" src={dish.image} alt="burger"/>
+								</div>
+								<div className="product-data">
+									<div className="product-title">{dish.title}</div>
+									<div className="product-price">${dish.price}</div>
+								</div>
+								<div className="product-total">
+									<img onClick={() => deleteDish(dish.id)} src={trash} alt="trash"/>
+									<div className="number">{dish.amount}</div>
+									<img onClick={() => increaseDish(dish.id,  dish.title, dish.price,dish.amount, dish.image)} src={plus} alt="plus"/>
+								</div>
+							</div>
+						);
+					})}
+				</div>
+				<div className="chefs-burger-wrapper">
+					<div className="chefs-burger-data">
+						<div className="burger-title">Chef’s Burger</div>
+						<div className="burger-price">$5.90</div>
+					</div>
+					<div className="burger-total">
+						<img src={minus} alt="minus"/>
+						<div className="number">2</div>
+						<img src={plus} alt="plus"/>
+					</div>
+					<div className="edit">
+						<img src={edite_icon} alt="edit"/>
+						<img src={delete_icon} alt="delete"/>
+					</div>
+				</div>
+				<Link to="/home" style={{textDecoration: "none"}}>
+					<div className="add-more">
+						<img src={plus_white} alt="plus"/>
+						<div className="add-more-descr">Add more items</div>
+					</div>
+				</Link>
+				<input className="add-instructions"
+					   placeholder="Add special instructions"
+					   type="text"
+				/>
+               <div className="promo-wrapper">
+				   <div className="promo-info">
+					   <div className="promo-title">Promo Code</div>
+					   <div className="promo-code">HXFWO</div>
+				   </div>
+				   <div className="promo-add">
+					   <img src={plus_big} alt="plus"/>
+				   </div>
+			   </div>
+
+				<div className="btn btn-322 check">
+					<div className="checkout">Check out</div>
+					<div className="check-price">$25.60</div>
+				</div>
+
+				<div className="nav-panel cart-nav">
+					<div className="nav-image-wrapper">
+						<img src={home} alt="home"/>
+					</div>
+					<Link to="/cart">
+						<div className="nav-image-wrapper">
+							<img src={box} alt="box"/>
+						</div>
+					</Link>
+					<div  className="search-wrapper">
+						<img src={search} alt="search"/>
+					</div>
+					<div  className="nav-image-wrapper">
+						<img src={heart} alt="heart"/>
+					</div>
+					<div className="nav-image-wrapper">
+						<img src={user_prof} alt="user"/>
+					</div>
+				</div>
 			</div>
 		</div>
 	)

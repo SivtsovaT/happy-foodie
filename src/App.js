@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './index.scss';
 import {Route, Routes} from "react-router-dom";
 import SplashPage from "./components/splash-page/SplashPage";
@@ -13,11 +13,14 @@ import MenuPage from "./components/menu-page/MenuPage";
 import HomePage from "./components/home-page/HomePage";
 import AddNewAddressPage from "./components/add-new-address-page/AddNewAddressPage";
 import CartPage from "./components/cart/CartPage";
-
-
-
+import RatingPage from "./components/rating-page/RatingPage";
+import DetailPage from "./components/detail-page/DetailPage";
+import ReviewsPage from "./components/reviews-page/ReviewsPage";
+import New from "./components/New";
 
 const App = () => {
+
+
     return (
         <>
             <Routes>
@@ -33,7 +36,12 @@ const App = () => {
                 <Route path="home" element={<HomePage/>}/>
                 <Route path="address" element={<AddNewAddressPage/>}></Route>
                 <Route path="cart" element={<CartPage/>}/>
+                <Route path="rating" element={<RatingPage/>}/>
+                <Route path="detail" element={<DetailPage/>}/>
+                <Route path="reviews" element={<ReviewsPage/>}/>
+                <Route path="new" element={<New/>}/>
             </Routes>
+
         </>
     )
 }
