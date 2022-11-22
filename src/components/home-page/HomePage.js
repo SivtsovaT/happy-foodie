@@ -1,293 +1,293 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./HomePage.scss";
 import burger from "../../images/burger.png";
 import pizza from "../../images/pizza.png";
 import cat from "../../images/cat.png";
-import box from "../../images/nav/box.png";
+import cart from "../../images/nav/box.png";
 import home from "../../images/nav/home.png";
 import search from "../../images/nav/search.png";
 import heart from "../../images/nav/heart.png";
 import user from "../../images/nav/user.png";
 import {Link} from "react-router-dom";
-import foodArray from "../data/products.json";
 import close from "../../images/close.png";
 import {getAuth} from "firebase/auth";
 import {db} from "../../firebase";
-import {doc, updateDoc, arrayUnion} from "firebase/firestore";
+import {doc, collection, getDocs, query, where, setDoc, increment, getDoc} from "firebase/firestore";
+import DetailPage from "../detail-page/DetailPage";
 
 const HomePage = () => {
-
-	const [burgerVisible, setBurgerVisible] = useState(true);
-	const [pizzaVisible, setPizzaVisible] = useState(true);
-	const [notTopVisible, setNotTopVisible] = useState(true);
 	const [searchValue, setSearchValue] = useState('');
-	const [findResultVisible, setFindResultVisible] = useState(false);
+	const [invisibleHome, setInvisibleHome] = useState(false);
+	const [dishes, setDishes] = useState([]);
+	const [dishesTop, setDishesTop] = useState([]);
+	const dishesCollectionRef = collection(db, "dishes");
+	const [filteredDishes, setFilteredDishes] = useState([]);
+	const [findInputVisible, setFindInputVisible] = useState(false);
+	const [dishDetailTitle, setDishDetailTitle] = useState('');
+	const [dishDetailPrice, setDishDetailPrice] = useState('');
+	const [dishDetailDescription, setDishDetailDescription] = useState('');
+	const [dishDetailImage, setDishDetailImage] = useState('');
+	const [dishDetailId, setDishDetailId] = useState('');
 
-	const products = foodArray.map((product) => {
-		const addProduct = async () => {
-			const auth = getAuth();
-			let userId = auth.currentUser.uid;
-			const userRef = doc(db, "users", userId);
-			await updateDoc(userRef, {
-				order: arrayUnion({title: product.title, price: product.price })
+	const showFindInput = () => {
+		setFindInputVisible(true)
+	}
+	const hideFindInput = () => {
+		setFindInputVisible(false)
+	}
+
+	const stylesHome = {
+		display: invisibleHome ? "none" : "flex"
+	}
+
+	const showHome = () => {
+		setInvisibleHome(prevState => !prevState)
+	}
+
+	useEffect(() => {
+		const getDishes = async () => {
+			const data = await getDocs(dishesCollectionRef);
+			setDishes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+		};
+
+		getDishes();
+	}, []);
+
+	useEffect(() => {
+		const getDishesTop = async () => {
+			const q = query(collection(db, "dishes"), where("top", "==", "true"));
+			const querySnapshot = await getDocs(q);
+			querySnapshot.forEach((doc) => {
+				setDishesTop(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 			});
-		}
-		return (
-			<div key={product.id} className="card--content">
-				<div className="image-wrapper">
-					<img src={product.image}/>
-				</div>
-				<div className="product">
-					<div className="product-title">{product.title}</div>
-					<div className="product-descr">{product.ingredients}</div>
-					<div className="order">
-						<div className="price">$ {product.price}</div>
-						<button onClick={addProduct} className="btn btn-28">+</button>
-					</div>
-				</div>
-			</div>
-		)
-	});
-	const burgerMenu = foodArray.filter(product => product.category == "burger").
-	map((product) => {
-		const addProduct = async () => {
-			const auth = getAuth();
-			let userId = auth.currentUser.uid;
-			const userRef = doc(db, "users", userId);
-			await updateDoc(userRef, {
-				order: arrayUnion({title: product.title, price: product.price })
-			});
-		}
-		return (
-			<div key={product.id} className="card--content">
-				<div className="image-wrapper">
-					<img src={product.image}/>
-				</div>
-				<div className="product">
-					<div className="product-title">{product.title}</div>
-					<div className="product-descr">{product.ingredients}</div>
-					<div className="order">
-						<div className="price">$ {product.price}</div>
-						<button onClick={addProduct} className="btn btn-28">+</button>
-					</div>
-				</div>
-			</div>
-		)
-	})
-	const pizzaMenu = foodArray.filter(product => product.category == "pizza").
-	map((product) => {
-		const addProduct = async () => {
-			const auth = getAuth();
-			let userId = auth.currentUser.uid;
-			const userRef = doc(db, "users", userId);
-			await updateDoc(userRef, {
-				order: arrayUnion({title: product.title, price: product.price })
-			});
-		}
-		return (
-			<div key={product.id} className="card--content">
-				<div className="image-wrapper">
-					<img src={product.image}/>
-				</div>
-				<div className="product">
-					<div className="product-title">{product.title}</div>
-					<div className="product-descr">{product.ingredients}</div>
-					<div className="order">
-						<div className="price">$ {product.price}</div>
-						<button onClick={addProduct} className="btn btn-28">+</button>
-					</div>
-				</div>
-			</div>
-		)
-	})
-	const topMenu = foodArray.filter(product => product.top == true).
-	map((product) => {
-		const addProduct = async () => {
-			const auth = getAuth();
-			let userId = auth.currentUser.uid;
-			const userRef = doc(db, "users", userId);
-			await updateDoc(userRef, {
-				order: arrayUnion({title: product.title, price: product.price })
-			});
-		}
-		return (
-			<div key={product.id} className="card--content">
-				<div className="image-wrapper">
-					<img src={product.image}/>
-				</div>
-				<div className="product">
-					<div className="product-title">{product.title}</div>
-					<div className="product-descr">{product.ingredients}</div>
-					<div className="order">
-						<div className="price">$ {product.price}</div>
-						<button onClick={addProduct} className="btn btn-28">+</button>
-					</div>
-				</div>
-			</div>
-		)
-	})
+		};
 
-	const find = foodArray.filter(product => product.title.toLowerCase().includes(searchValue.toLowerCase())).
-	map((product) => {
-		const addProduct = async () => {
-			const auth = getAuth();
-			let userId = auth.currentUser.uid;
-			const userRef = doc(db, "users", userId);
-			await updateDoc(userRef, {
-				order: arrayUnion({title: product.title, price: product.price })
-			});
-		}
-		return (
-			<div key={product.id} className="card--content">
-				<div className="image-wrapper">
-					<img src={product.image}/>
-				</div>
-				<div className="product">
-					<div className="product-title">{product.title}</div>
-					<div className="product-descr">{product.ingredients}</div>
-					<div className="order">
-						<div className="price">$ {product.price}</div>
-						<button onClick={addProduct} className="btn btn-28">+</button>
-					</div>
-				</div>
-			</div>
-		)
-	})
+		getDishesTop();
+	}, []);
 
-	const showBurgerMenu = () => {
-		 setPizzaVisible(false);
-		 setBurgerVisible(true);
+	useEffect(() => {
+		setFilteredDishes(
+			dishes.filter(
+				(dish) =>
+					dish.title.toLowerCase().includes(searchValue.toLowerCase())
+			)
+		);
+	}, [searchValue, dishes]);
+
+	const openAllMenu =  async () => {
+		const q = query(collection(db, "dishes"));
+		const querySnapshot = await getDocs(q);
+		querySnapshot.forEach((doc) => {
+			setDishes(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+		});
 	}
 
-	const showAllMenu = () => {
-		setBurgerVisible(true);
-		setPizzaVisible(true)
+	const openBurgerMenu =  async () => {
+		const q = query(collection(db, "dishes"), where("category", "==", "burger"));
+		const querySnapshot = await getDocs(q);
+		querySnapshot.forEach((doc) => {
+			setDishes(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+		});
 	}
 
-	const showPizzaMenu = () => {
-		setBurgerVisible(false);
-		setPizzaVisible(true);
+	const openPizzaMenu =  async () => {
+		const q = query(collection(db, "dishes"), where("category", "==", "pizza"));
+		const querySnapshot = await getDocs(q);
+		querySnapshot.forEach((doc) => {
+			setDishes(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+		});
 	}
 
-	const showAllTop = () => {
-		setNotTopVisible(false);
+	const showAllTop = async () => {
+		const q = query(collection(db, "dishes"));
+		const querySnapshot = await getDocs(q);
+		querySnapshot.forEach((doc) => {
+			setDishesTop(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+		});
 	}
 
-	const showTopOnly = () => {
-		setNotTopVisible(true);
+	const showTopOnly = async () => {
+		const q = query(collection(db, "dishes"), where("top", "==", "true"));
+		const querySnapshot = await getDocs(q);
+		querySnapshot.forEach((doc) => {
+			setDishesTop(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+		});
 	}
 
-	const showFindPanel = () => {
-		setFindResultVisible(true)
+	const addProductToCart = async (id, title, price, image) => {
+		const auth = getAuth();
+		let userId = auth.currentUser.uid;
+		let productId = id;
+		let itemRef = doc(db, `users/${userId}/cart/${productId}`);
+
+		 await setDoc(itemRef,{
+			title: title,
+			price: price,
+			amount: increment(1),
+			image: image,
+		}, {merge: true});
 	}
 
-	const hideFindPanel = () => {
-		setFindResultVisible(false)
+	const showProd = async (id) => {
+		const productId = id;
+		const docRef = doc(db, "dishes", productId);
+		const docSnap = await getDoc(docRef);
+		await setDishDetailTitle(docSnap.data().title);
+		await setDishDetailPrice(docSnap.data().price);
+		await setDishDetailDescription(docSnap.data().description);
+		await setDishDetailImage(docSnap.data().image);
+		await setDishDetailId(docSnap.data().id);
+		setDishDetailId(productId)
+		setInvisibleHome(true);
 	}
 
 	return (
-		<div className="content">
-			<div className="content-home">
-				<div className="sandwich">
-					<Link to="/menu" className="sandwich-wrapper">
-						<div className="line-one"></div>
-						<div className="line-two"></div>
-						<div className="line-three"></div>
-					</Link>
-					<div className="cat-wrapper">
-						<img src={cat} alt="cat"/>
-					</div>
-				</div>
-				<div className="home-header">
-					<div className="title">Get your Food</div>
-					<div className="descr">Delivered!</div>
-				</div>
-				<div className="categories">
-					<div onClick={showAllMenu} className="all">All</div>
-					<div className="category">
-						<div onClick={showBurgerMenu} className="category-image">
-							<img src={burger} alt="burger"/>
+		<div>
+			{
+				invisibleHome && <DetailPage dishDetailTitle={dishDetailTitle}
+											 dishDetailPrice={dishDetailPrice}
+											 dishDetailDescription={dishDetailDescription}
+											 dishDetailImage={dishDetailImage}
+											 dishDetailId={dishDetailId}
+											 showHome={showHome}
+				/>
+			}
+			<div style={stylesHome} className="content">
+				<div  className="content-home">
+					<div className="sandwich">
+						<Link to="/menu" className="sandwich-wrapper">
+							<div className="line-one"></div>
+							<div className="line-two"></div>
+							<div className="line-three"></div>
+						</Link>
+						<div className="cat-wrapper">
+							<img src={cat} alt="cat"/>
 						</div>
-						<div className="category-title">Burger</div>
 					</div>
-					<div className="category">
-						<div onClick={showPizzaMenu} className="category-image">
-							<img src={pizza} alt="pizza"/>
+					<div className="home-header">
+						<div className="title">Get your Food</div>
+						<div className="descr">Delivered!</div>
+					</div>
+					<div className="categories">
+						<div onClick={openAllMenu} className="all">All</div>
+						<div className="category">
+							<div onClick={openBurgerMenu} className="category-image">
+								<img src={burger} alt="burger"/>
+							</div>
+							<div className="category-title">Burger</div>
 						</div>
-						<div className="category-title">Pizza</div>
+						<div className="category">
+							<div onClick={openPizzaMenu} className="category-image">
+								<img src={pizza} alt="pizza"/>
+							</div>
+							<div className="category-title">Pizza</div>
+						</div>
 					</div>
-				</div>
-				{
-					findResultVisible
-						? <div className="find-wrapper">
-							<input type="text"
-								   style={{marginLeft: "21px"}}
-								   className="input-log height-58"
-								   value={searchValue}
-								   onChange={(event) => setSearchValue(event.target.value)}
+					{
+						findInputVisible ? 	<div className="find-wrapper">
+							<input
+								type="text"
+								style={{marginLeft: "21px"}}
+								className="input-log height-58"
+								value={searchValue}
+								onChange={(event) => setSearchValue(event.target.value)}
 							/>
 							<button className="btn btn-28"
 									style={{marginLeft: "-40px"}}
-									onClick={hideFindPanel}>
+									onClick={hideFindInput}>
 								<img src={close} alt={close}/>
 							</button>
-						</div>
-						: null
-				}
-				<div className="main">
-					<div className="bar">
-						<div className="new">New</div>
-						<div className="popular">Popular</div>
-					</div>
-					{
-						findResultVisible ? <div className="card">
-							{
-								findResultVisible ? find : null
-							}
-
-						</div> : <div className="card">
-							{
-								burgerVisible && pizzaVisible ? products : (
-									(!burgerVisible && pizzaVisible) ? pizzaMenu : burgerMenu
-								)
-							}
-						</div>
+						</div> : null
 					}
-				</div>
+					<div className="main">
+						<div className="bar">
+							<div className="new">New</div>
+							<div className="popular">Popular</div>
+						</div>
+						<div className="card">
+							{filteredDishes.map((dish) => {
+								return (
+									<div key={dish.id} className="card--content">
+										<div className="image-wrapper">
+											<img src={dish.image}
+												 alt="image"
+												onClick={() => showProd(dish.id)}
+											/>
+										</div>
+										<div className="product">
+											<div className="product-title">{dish.title}</div>
+											<div className="product-descr">{dish.ingredients}</div>
+											<div className="order">
+												<div className="price">$ {dish.price}</div>
+												<button onClick={() => addProductToCart(
+													dish.id,
+													dish.title,
+													dish.price,
+													dish.image
+												)}
+														className="btn btn-28">+</button>
+											</div>
+										</div>
+									</div>
+								)
+							})
+							}
+						</div>
+					</div>
 
-				<div className="details">
-					<div className="top-details">Top Food Deals</div>
-					<div className="view-all">
-						<div onClick={showAllTop} className="view-all-title">View all</div>
-						<div className="view-all-image">
-							<i></i>
+					<div className="details">
+						<div className="top-details">Top Food Deals</div>
+						<div className="view-all">
+							<div onClick={showAllTop} className="view-all-title">View all</div>
+							<div className="view-all-image">
+								<i></i>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div className="main">
-					<div className="card">
-						{
-							notTopVisible ? topMenu : products
-						}
+					<div className="main">
+						<div className="card">
+							{
+								dishesTop.map((dish) => {
+									return (
+										<div key={dish.id} className="card--content">
+											<div className="image-wrapper">
+												<img src={dish.image}
+													 alt="image"
+													 onClick={showHome}
+												/>
+											</div>
+											<div className="product">
+												<div className="product-title">{dish.title}</div>
+												<div className="product-descr">{dish.ingredients}</div>
+												<div className="order">
+													<div className="price">$ {dish.price}</div>
+													<button  className="btn btn-28">+</button>
+												</div>
+											</div>
+										</div>
+									)
+								})
+							}
+						</div>
 					</div>
-				</div>
-				<div className="nav-panel">
-					<div className="nav-image-wrapper">
-						<img src={home} alt="home"/>
-					</div>
-					<Link to="/cart">
+					<div className="nav-panel">
 						<div className="nav-image-wrapper">
-							<img src={box} alt="box"/>
+							<img src={home} alt="home"/>
 						</div>
-					</Link>
-					<div onClick={showFindPanel} className="search-wrapper">
-						<img src={search} alt="search"/>
-					</div>
-					<div onClick={showTopOnly} className="nav-image-wrapper">
-						<img src={heart} alt="heart"/>
-					</div>
-					<div className="nav-image-wrapper">
-						<img src={user} alt="user"/>
+						<Link to="/cart">
+							<div className="nav-image-wrapper">
+								<img src={cart} alt="box"/>
+							</div>
+						</Link>
+						<div onClick={showFindInput} className="search-wrapper">
+							<img src={search} alt="search"/>
+						</div>
+						<div onClick={showTopOnly} className="nav-image-wrapper">
+							<img src={heart} alt="heart"/>
+						</div>
+						<div className="nav-image-wrapper">
+							<img src={user} alt="user"/>
+						</div>
 					</div>
 				</div>
 			</div>

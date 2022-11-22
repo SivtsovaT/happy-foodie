@@ -1,0 +1,40 @@
+.reviews-header {
+	display: flex;
+	align-items: center;
+}
+.reviews_link-wrapper {
+	width: 45px;
+	height: 45px;
+	border-radius: 10px;
+	background: var(--main-dark-violet);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 35px;
+	margin-left: 22px;
+	margin-bottom: 24px;
+}
+.reviews-title {
+	font-family: Roboto;
+	font-weight: 500;
+	font-size: 18px;
+	color: var(--main-white-color);
+	margin-top: 47px;
+	margin-left: 87px;
+}
+.reviews {
+	margin-left: 25px;
+	border-radius: 10px;
+	background: var(--main-dark-violet);
+	width: 325px;
+	height: 33px;
+	border: none;
+	margin-bottom: 35px;
+	padding-top: 18px;
+}
+
+
+.review-list {
+	overflow: auto;
+	height: 300px;
+}

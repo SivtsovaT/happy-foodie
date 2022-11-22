@@ -28,7 +28,7 @@ const LoginPage = () => {
 			);
 			console.log(user);
 			setTimeout(() => {
-				window.location.replace("menu");
+				window.location.replace("home");
 			}, 3000);
 		} catch {
 			alert('Incorrect email or password')
