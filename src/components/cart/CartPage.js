@@ -251,20 +251,6 @@ const CartPage = () => {
 		getDishes();
 	}, [currentAuth]);
 
-	// const deleteAll = async () => {
-	// 	const auth = getAuth();
-	// 	const userId = auth.currentUser.uid;
-	// 	const cartRef = collection(db, "users", userId, "cart");
-	//
-	// 	const products = await getDocs(cartRef);
-	// 	for ( let product in products) {
-	// 		let productId = product.id;
-	// 		let itemRef = doc(db, `users/${currentAuth}/cart/${productId}`);
-	// 		await deleteDoc(itemRef);
-	// 		console.log(product);
-	// 	}
-	// }
-
 	return (
 		<div className="content">
 			<div className="content-cart">
@@ -274,7 +260,6 @@ const CartPage = () => {
 							<img src={back} alt="back"/>
 						</div>
 					</Link>
-					{/*<button onClick={deleteAll}>delete</button>*/}
 					<div className="delivery">
 						<div className="delivery-header">Delivery to</div>
 						<div className="delivery-address">{userData.region}, {userData.city}, {userData.street}
@@ -398,5 +383,4 @@ const CartPage = () => {
 		</div>
 	)
 }
-
 export default CartPage;
