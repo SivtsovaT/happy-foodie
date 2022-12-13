@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './index.scss';
 import {Route, Routes} from "react-router-dom";
 import SplashPage from "./components/splash-page/SplashPage";
@@ -18,8 +18,6 @@ import DetailPage from "./components/detail-page/DetailPage";
 import ReviewsPage from "./components/reviews-page/ReviewsPage";
 
 const App = () => {
-
-
     return (
         <>
             <Routes>
@@ -39,7 +37,6 @@ const App = () => {
                 <Route path="detail" element={<DetailPage/>}/>
                 <Route path="reviews" element={<ReviewsPage/>}/>
             </Routes>
-
         </>
     )
 }

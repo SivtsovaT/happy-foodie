@@ -1,3 +1,4 @@
+import React, {useEffect, useRef, useState} from "react";
 import React, {useEffect, useState} from "react";
 import "./HomePage.scss";
 import burger from "../../images/burger.png";
@@ -28,6 +29,21 @@ const HomePage = () => {
 	const [dishDetailDescription, setDishDetailDescription] = useState('');
 	const [dishDetailImage, setDishDetailImage] = useState('');
 	const [dishDetailId, setDishDetailId] = useState('');
+
+	const showFindInput = () => {
+		setFindInputVisible(true)
+	}
+	const hideFindInput = () => {
+		setFindInputVisible(false)
+	}
+	//const [box, setBox] = useState([]);
+	const [detailItem, setDetailItem] = useState({});
+	const [invisibleHome, setInvisibleHome] = useState(false);
+	const [dishes, setDishes] = useState([]);
+	const [dishesTop, setDishesTop] = useState([]);
+	const dishesCollectionRef = collection(db, "dishes");
+	const [filteredDishes, setFilteredDishes] = useState([]);
+	const [findInputVisible, setFindInputVisible] = useState(false);
 
 	const showFindInput = () => {
 		setFindInputVisible(true)

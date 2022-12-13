@@ -274,7 +274,6 @@ const CartPage = () => {
 							<img src={back} alt="back"/>
 						</div>
 					</Link>
-					{/*<button onClick={deleteAll}>delete</button>*/}
 					<div className="delivery">
 						<div className="delivery-header">Delivery to</div>
 						<div className="delivery-address">{userData.region}, {userData.city}, {userData.street}
@@ -282,49 +281,41 @@ const CartPage = () => {
 					</div>
 				</div>
 				<h2 className="your-cart">Your cart</h2>
-				<div className="products-wrapper">
+				<div className="products-wrapper" >
 					{dishes.map((dish) => {
 						return (
-							<div key={dish.id} className="product-wrapper">
+							<div className="product-wrapper">
 								<div className="product-image">
 									<img className="cart-image" src={dish.image} alt="burger"/>
 								</div>
 								<div className="product-data">
 									<div className="product-title">{dish.title}</div>
-									<div className="product-price">${dish.price * dish.amount}</div>
+									<div className="product-price">${dish.price}</div>
 								</div>
-								{ httpPending && <div className="product-total">Saving...</div>}
-								{ !httpPending && <div className="product-total">
+								<div className="product-total">
 									<img onClick={() => deleteDish(dish.id)} src={trash} alt="trash"/>
 									<div className="number">{dish.amount}</div>
-									<img
-										onClick={() => increaseDish(dish.id, dish.title, dish.price, dish.amount, dish.image)}
-										src={plus} alt="plus"/>
+									<img onClick={() => increaseDish(dish.id,  dish.title, dish.price,dish.amount, dish.image)} src={plus} alt="plus"/>
 								</div>
-								}
 							</div>
 						);
 					})}
 				</div>
-				{
-					chefsBurgerVisible ?
-						<div className="chefs-burger-wrapper">
-							<div className="chefs-burger-data">
-								<div className="burger-title">{chefsBurger.title}</div>
-								<div className="burger-price">${chefsBurger.price}</div>
-							</div>
-							<div style={stylesChief} className="burger-total">
-								<img onClick={decrementChefsBurger} src={minus} alt="minus"/>
-								<div className="number">{chefsAmount}</div>
-								<img onClick={incrementChefsBurger} src={plus} alt="plus"/>
-							</div>
-							<div className="edit">
-								<img onClick={editChefsBurger} src={edite_icon} alt="edit"/>
-								<img onClick={removeChiefBurger} src={delete_icon} alt="delete"/>
-							</div>
-						</div> : null
-
-				}
+				<div className="chefs-burger-wrapper">
+					<div className="chefs-burger-data">
+						<div className="burger-title">Chef’s Burger</div>
+						<div className="burger-price">$5.90</div>
+					</div>
+					<div className="burger-total">
+						<img src={minus} alt="minus"/>
+						<div className="number">2</div>
+						<img src={plus} alt="plus"/>
+					</div>
+					<div className="edit">
+						<img src={edite_icon} alt="edit"/>
+						<img src={delete_icon} alt="delete"/>
+					</div>
+				</div>
 				<Link to="/home" style={{textDecoration: "none"}}>
 					<div className="add-more">
 						<img src={plus_white} alt="plus"/>
@@ -334,60 +325,35 @@ const CartPage = () => {
 				<input className="add-instructions"
 					   placeholder="Add special instructions"
 					   type="text"
-					   value={comment}
-					   onChange={addComment}
 				/>
-				<div className="promo-wrapper">
-					<div className="promo-info">
-						<div className="promo-title">Promo Code</div>
-						<div className="promo-code">{promoCode}</div>
-					</div>
-					{
-						addPromoCodeVisible ?
-							<div>
-								<input className="input-log input-promo"
-									   placeholder="add your promo code"
-									   value={promoCode}
-									   onChange={addPromoCode}
-								/>
-								<button className="btn btn-28"
-										style={{marginLeft: "-40px"}}
-										onClick={hidePromoCodeInput}
-										>
-									<img src={close} alt={close}/>
-								</button>
+               <div className="promo-wrapper">
+				   <div className="promo-info">
+					   <div className="promo-title">Promo Code</div>
+					   <div className="promo-code">HXFWO</div>
+				   </div>
+				   <div className="promo-add">
+					   <img src={plus_big} alt="plus"/>
+				   </div>
+			   </div>
 
-							</div>
-
-						: null
-					}
-					<div onClick={showPromoCodeInput} className="promo-add">
-						<img src={plus_big} alt="plus"/>
-					</div>
-				</div>
-
-				<div onClick={checkOut} className="btn btn-322 check">
+				<div className="btn btn-322 check">
 					<div className="checkout">Check out</div>
-								<div className="check-price">${totalPrice}</div>
-
+					<div className="check-price">$25.60</div>
 				</div>
 
 				<div className="nav-panel cart-nav">
 					<div className="nav-image-wrapper">
-						<Link to="/home">
-							<img src={home} alt="home"/>
-
-						</Link>
+						<img src={home} alt="home"/>
 					</div>
 					<Link to="/cart">
 						<div className="nav-image-wrapper">
 							<img src={box} alt="box"/>
 						</div>
 					</Link>
-					<div className="search-wrapper">
+					<div  className="search-wrapper">
 						<img src={search} alt="search"/>
 					</div>
-					<div className="nav-image-wrapper">
+					<div  className="nav-image-wrapper">
 						<img src={heart} alt="heart"/>
 					</div>
 					<div className="nav-image-wrapper">
