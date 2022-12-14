@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./RatingPage.scss";
 import {Link} from "react-router-dom";
 import back from "../../images/back.png";
@@ -6,26 +6,72 @@ import rating_logo from "../../images/rating/rating-logo.png";
 import rating_small from "../../images/rating/rating-small.png";
 import star_red from "../../images/rating/star_red.png";
 import star_empty from "../../images/rating/star_wtite.png";
-import {getAuth, onAuthStateChanged, updateProfile} from "firebase/auth";
-import {auth} from "../../firebase";
+import {getAuth} from "firebase/auth";
 import {db} from "../../firebase";
-import {setDoc, doc, increment} from "firebase/firestore";
+import {setDoc, doc, getDoc} from "firebase/firestore";
 
 
 const RatingPage = () => {
 	const [rating, setRating] = useState(null);
 	const [hover, setHover] = useState(null);
 	const [comment, setComment] = useState("");
+	const [userData, setUserData] = useState([]);
+	const [currentAuth, setCurrentAuth] = useState(null);
+	const [httpPending, setHttpPending] = useState(false);
+
+	const getAuthUser = async () => {
+		try {
+			const auth = await getAuth();
+			const userId = auth?.currentUser?.uid || null
+			setCurrentAuth(userId);
+			if (!userId) {
+				setTimeout(() => {
+					getAuthUser();
+				}, 2000);
+			}
+		} catch (e) {
+			console.log(e)
+		}
+	};
+
+	useEffect(() => {
+		if (!currentAuth) {
+			return;
+		}
+		const getUser = async () => {
+			const docRef = doc(db, "users", currentAuth);
+			const docSnap = await getDoc(docRef);
+			const data = docSnap.data();
+			setUserData(data);
+		}
+		getUser();
+	}, [currentAuth]);
+
+	useEffect(() => {
+		const auth = async () => {
+			await getAuthUser();
+		};
+		auth();
+	}, []);
 
 	const handleSubmit = async () => {
-		const auth = getAuth();
-		const userId = auth.currentUser.uid;
-		let itemRef = doc(db, `reviews/${userId}`);
-		await setDoc(itemRef, {
-			userId: userId,
-			rating: rating,
-			comment: comment
-		}, {merge: true});
+		if (!currentAuth || httpPending) {
+			return;
+		}
+		let itemRef = doc(db, `reviews/${currentAuth}`);
+		setHttpPending(true);
+		try {
+			await setDoc(itemRef, {
+				userId: currentAuth,
+				rating: rating,
+				comment: comment
+			}, {merge: true});
+			window.location.replace('home');
+
+		} catch (e) {
+			console.log(e);
+			setHttpPending(false);
+		}
 	}
 
 	return (
@@ -47,7 +93,7 @@ const RatingPage = () => {
 						</div>
 					</div>
 				    <div className="rating-header">Whataburger</div>
-				<div className="rating-pretty">4102  Pretty View Lanenda</div>
+				<div className="rating-pretty">{userData.region}, {userData.city}, {userData.street}</div>
 				<div className="order-delivered">
 					<div className="order-ellipse"></div>
 					<div className="order-text">Order Delivered</div>
