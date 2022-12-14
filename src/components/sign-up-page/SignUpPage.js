@@ -6,7 +6,7 @@ import hide from "../../images/hide.png";
 import {createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
 import {auth} from "../../firebase";
 import {db} from "../../firebase";
-import {collection, addDoc} from "firebase/firestore";
+import {collection, addDoc, doc, setDoc} from "firebase/firestore";
 
 const SignUpPage = () => {
 	const [passwordShown, setPasswordShown] = useState(true);
@@ -33,7 +33,8 @@ const SignUpPage = () => {
 		} else {
 			const userCredential = await  createUserWithEmailAndPassword(auth, email, password);
 			const user = userCredential.user;
-			addDoc(usersCollectionRef, { displayName: name, email: email });
+			let userRef = doc(db, `users/${userCredential.user.uid}`);
+			await setDoc(userRef, { displayName: name, email: email });
 			console.log(user);
 			await updateProfile(user, {
 				displayName: name

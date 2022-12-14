@@ -1,0 +1,102 @@
+.rating-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-family: Roboto;
+	.logo-main {
+		width: 104px;
+		height: 104px;
+		border-radius: 52px;
+		background: var(--main-white-color);
+		//background: url("../../images/rating/star_red.png");
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 44px;
+		.logo-wrapper {
+			width: 81.51px;
+			height: 81.51px;
+			position: relative;
+		}
+		.main-logo {
+			position: absolute;
+			top: -25px;
+			left: -35px;
+		}
+		.small-logo {
+			position: absolute;
+			top: 60px;
+			left: 65px;
+		}
+	}
+	.rating-header {
+		font-weight: 900;
+		font-size: 20px;
+		color: var(--main-white-color);
+		margin-top: 10px;
+	}
+	.rating-pretty {
+		font-weight: 400;
+		font-size: 13px;
+		color: var(--dark-grey-color);
+		margin-top: 8px;
+	}
+	.order-delivered {
+		color: var(--main-green-color);
+		font-weight: 300;
+		font-size: 14px;
+		margin-top: 13px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-direction: row;
+		width: 103px;
+		.order-ellipse {
+			width: 5px;
+			height: 5px;
+			border-radius: 50%;
+			background: var(--main-green-color);
+		}
+	}
+	.rate {
+		color: var(--main-white-color);
+		font-weight: 900;
+		font-size: 18px;
+		margin-top: 28px;
+	}
+	.good {
+		margin-top: 24px;
+		font-weight: 400;
+		font-size: 22px;
+		color: var(--main-red-color);
+	}
+	.stars-wrapper {
+		width: 230px;
+		display: flex;
+		justify-content: center;
+		margin-top: 10px;
+		.star-input {
+			display: none;
+		}
+		.star-wrapper {
+			margin-right: 8px;
+			margin-left: 8px;
+			width: 32px;
+			height: 32px;
+			cursor: pointer;
+		}
+	}
+	.rating {
+		width: 323px;
+		height: 144px;
+		border-radius: 10px;
+		margin-top: 44px;
+		padding-top: 24px;
+	}
+	.btn-rating {
+		margin-top: 43px;
+		font-family: Montserrat-Black;
+		font-weight: 700;
+		font-size: 16px;
+	}
+}
