@@ -78,7 +78,7 @@ const AddNewAddressPage = () => {
 				city: city,
 				street: street,
 				phone: phoneNumber
-			});
+			}, {merge: true});
 			alert('Updated users details');
 		}
 

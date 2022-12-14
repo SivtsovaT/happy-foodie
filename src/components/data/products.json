@@ -6,6 +6,7 @@
 	"title": "Pizza Napoletana",
 	"price": 8,
 	"ingredients": "Chicken, Cheese",
+	"description": "Amazing pizza with the addition of a unicorn tail. Try it and you will never forget",
 	"image": "https://media.istockphoto.com/id/1349560847/uk/%D1%84%D0%BE%D1%82%D0%BE/%D0%BA%D0%BE%D0%B2%D0%B1%D0%B0%D1%81%D0%B0-%D1%96-%D0%BE%D0%B2%D0%BE%D1%87%D0%B5%D0%B2%D0%B0-%D0%BF%D1%96%D1%86%D0%B0-%D0%BD%D0%B0-%D1%82%D0%B5%D0%BC%D0%BD%D0%BE%D0%BC%D1%83-%D1%82%D0%BB%D1%96.jpg?s=612x612&w=0&k=20&c=AJqqZo29mrI9B2pBQccpKJtdeSGmzwBsMkicUR5_AV0="
   },
   {
@@ -15,6 +16,7 @@
 	"title": "Calzone",
 	"price": 12,
 	"ingredients": "Chicken, Cheese",
+	"description": "Amazing pizza with the addition of a unicorn tail. Try it and you will never forget",
 	"image": "https://media.istockphoto.com/id/1089021512/uk/%D1%84%D0%BE%D1%82%D0%BE/%D0%B6%D1%96%D0%BD%D0%BA%D0%B0-%D1%80%D1%83%D0%BA%D0%B8-%D0%B1%D0%B5%D1%80%D0%B5-%D0%BF%D1%96%D1%86%D1%83-%D0%BD%D0%B0-%D1%82%D0%B0%D1%80%D1%96%D0%BB%D0%BA%D1%83-%D0%B2%D0%B8%D0%B4-%D0%B7%D0%B2%D0%B5%D1%80%D1%85%D1%83.jpg?s=612x612&w=0&k=20&c=3oP3bQpiDZXKtvBmVd9iVTNhNst4LEXN2wW1U1EXPDs="
   },
   {
@@ -24,6 +26,7 @@
 	"title": "Pizza al taglio",
 	"price": 11.60,
 	"ingredients": "Chicken, Cheese",
+	"description": "Amazing pizza with the addition of a unicorn tail. Try it and you will never forget",
 	"image": "https://media.istockphoto.com/id/1312299562/uk/%D1%84%D0%BE%D1%82%D0%BE/%D1%81%D0%BC%D0%B0%D1%87%D0%BD%D0%B0-%D0%B4%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D1%8F-%D0%BF%D1%96%D1%86%D0%B0-%D0%BD%D0%B0-%D0%BA%D0%B0%D0%BC%D1%8F%D0%BD%D0%BE%D0%BC%D1%83-%D1%82%D0%BB%D1%96.jpg?s=612x612&w=0&k=20&c=XJzKifK7fZp5_H8TtBN7r1Ipjs9V_ryqGS72Kx6aqTU="
   },
   {
@@ -33,6 +36,7 @@
 	"category": "pizza",
 	"price": 6.20,
 	"ingredients": "Chicken, Cheese",
+	"description": "Amazing pizza with the addition of a unicorn tail. Try it and you will never forget",
 	"image": "https://media.istockphoto.com/id/1145478162/uk/%D1%84%D0%BE%D1%82%D0%BE/%D0%BC%D0%BE%D1%80%D1%81%D1%8C%D0%BA%D0%B0-%D0%BF%D1%96%D1%86%D0%B0-%D0%B7-%D0%BA%D1%80%D0%B5%D0%B2%D0%B5%D1%82%D0%BA%D0%B0%D0%BC%D0%B8-%D0%BE%D0%BB%D0%B8%D0%B2%D0%BA%D0%B0%D0%BC%D0%B8-%D1%96-%D1%81%D0%B8%D1%80%D0%BE%D0%BC.jpg?s=612x612&w=0&k=20&c=vADSGrYybtiP4rQhkPHiEv_wXWV0iCSFLr5qtbtQOE0="
   },
   {
@@ -42,6 +46,7 @@
 	"title": "Pizza fritta",
 	"price": 14,
 	"ingredients": "Chicken, Cheese",
+	"description": "Amazing pizza with the addition of a unicorn tail. Try it and you will never forget",
 	"image": "https://media.istockphoto.com/id/1417753316/uk/%D1%84%D0%BE%D1%82%D0%BE/%D0%BF%D1%96%D1%86%D0%B0-%D0%BD%D0%B0-%D1%81%D1%96%D0%BB%D1%8C%D1%81%D1%8C%D0%BA%D1%96%D0%B9-%D1%81%D0%B8%D0%BD%D1%96%D0%B9-%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D1%8F%D0%BD%D1%96%D0%B9-%D0%B4%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D1%96%D0%B9-%D0%BA%D1%83%D1%85%D0%BD%D1%96-%D0%B0%D0%B1%D0%BE-%D1%80%D0%B5%D1%81%D1%82%D0%BE%D1%80%D0%B0%D0%BD%D0%BD%D0%BE%D0%BC%D1%83-%D1%81%D1%82%D0%BE%D0%BB%D1%96.jpg?s=612x612&w=0&k=20&c=W0fdiNQv8qwV-pOyJEQiB1n-mRReVyERaI07W2WyrdE="
   },
   {
@@ -51,6 +56,7 @@
 	"title": "Burger Mix",
 	"price": 5,
 	"ingredients": "Chicken, Cheese",
+	"description": "Amazing burger with the addition of a unicorn tail. Try it and you will never forget",
 	"image": "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YnVyZ2VyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
   },
   {
@@ -60,6 +66,7 @@
 	"title": "Easy burger",
 	"price": 8,
 	"ingredients": "Chicken, Cheese",
+	"description": "Amazing burger with the addition of a unicorn tail. Try it and you will never forget",
 	"image": "https://media.istockphoto.com/id/1409882171/uk/%D1%84%D0%BE%D1%82%D0%BE/%D0%B3%D1%80%D0%B8%D0%B1%D0%BD%D0%B8%D0%B9-%D1%87%D1%96%D0%B7%D0%B1%D1%83%D1%80%D0%B3%D0%B5%D1%80-%D0%BD%D0%B0-%D0%BF%D1%96%D0%B4%D1%81%D0%BC%D0%B0%D0%B6%D0%B5%D0%BD%D1%96%D0%B9-%D0%B1%D1%83%D0%BB%D0%BE%D1%87%D1%86%D1%96.jpg?s=612x612&w=0&k=20&c=34_V2p8wzoIjZWZmyJmGLew__ElObYQ6WmZ4hg5APOE="
   },
   {
@@ -69,6 +76,7 @@
 	"title": "Burger Lux",
 	"price": 14,
 	"ingredients": "Chicken, Cheese",
+	"description": "Amazing burger with the addition of a unicorn tail. Try it and you will never forget",
 	"image": "https://plus.unsplash.com/premium_photo-1667682209935-b6c87cced668?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YnVyZ2VyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
   },
   {
@@ -78,6 +86,7 @@
 	"title": "Star Burger",
 	"price": 16,
 	"ingredients": "Chicken, Cheese",
+	"description": "Amazing burger with the addition of a unicorn tail. Try it and you will never forget",
 	"image": "https://media.istockphoto.com/id/1400656321/photo/homemade-cheese-smash-burger.jpg?b=1&s=170667a&w=0&k=20&c=8fjw6SEeNqKQg1fn4X0xRDiQET4slAjVrqGYBEnPDIo="
   }
 

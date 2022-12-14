@@ -13,9 +13,9 @@ import MenuPage from "./components/menu-page/MenuPage";
 import HomePage from "./components/home-page/HomePage";
 import AddNewAddressPage from "./components/add-new-address-page/AddNewAddressPage";
 import CartPage from "./components/cart/CartPage";
-
-
-
+import RatingPage from "./components/rating-page/RatingPage";
+import DetailPage from "./components/detail-page/DetailPage";
+import ReviewsPage from "./components/reviews-page/ReviewsPage";
 
 const App = () => {
     return (
@@ -33,6 +33,9 @@ const App = () => {
                 <Route path="home" element={<HomePage/>}/>
                 <Route path="address" element={<AddNewAddressPage/>}></Route>
                 <Route path="cart" element={<CartPage/>}/>
+                <Route path="rating" element={<RatingPage/>}/>
+                <Route path="detail" element={<DetailPage/>}/>
+                <Route path="reviews" element={<ReviewsPage/>}/>
             </Routes>
         </>
     )
