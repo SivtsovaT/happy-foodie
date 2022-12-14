@@ -171,6 +171,8 @@ const CartPage = () => {
 			setChefsAmount(chefsAmount + 1);
 		}
 	}
+	const totalSum = dishes.map(item => item.amount * item.price).reduce((prev, curr) => prev + curr, 0);
+
 	const checkOut = async () => {
 		if (!currentAuth || httpPending) {
 			return;
@@ -184,9 +186,9 @@ const CartPage = () => {
 				await setDoc(doc(db, "users", currentAuth), {
 					...order,
 					comment: comment,
-					promoCode: promoCode
+					promoCode: promoCode,
+					totalSum: totalSum
 				}, {merge: true});
-				setTotalPrice(order.reduce((s, i) => s = s + i.totalPrice, 0));
 
 			} else {
 				alert('Please check some meals');
@@ -353,7 +355,8 @@ const CartPage = () => {
 
 				<div onClick={checkOut} className="btn btn-322 check">
 					<div className="checkout">Check out</div>
-					<div className="check-price">${totalPrice}</div>
+								<div  className="check-price">${totalSum}</div>
+
 
 				</div>
 
