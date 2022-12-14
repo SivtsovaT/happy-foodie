@@ -16,6 +16,7 @@ import CartPage from "./components/cart/CartPage";
 import RatingPage from "./components/rating-page/RatingPage";
 import DetailPage from "./components/detail-page/DetailPage";
 import ReviewsPage from "./components/reviews-page/ReviewsPage";
+import ReviewRestaurantPage from "./components/review-resturent-page/ReviewRestaurantPage";
 
 const App = () => {
     return (
@@ -36,6 +37,8 @@ const App = () => {
                 <Route path="rating" element={<RatingPage/>}/>
                 <Route path="detail" element={<DetailPage/>}/>
                 <Route path="reviews" element={<ReviewsPage/>}/>
+                <Route path="revres" element={<ReviewRestaurantPage/>}/>
+
             </Routes>
         </>
     )
