@@ -9,7 +9,7 @@ import star_empty from "../../images/rating/star_wtite.png";
 import {getAuth, onAuthStateChanged, updateProfile} from "firebase/auth";
 import {auth} from "../../firebase";
 import {db} from "../../firebase";
-import {setDoc, doc} from "firebase/firestore";
+import {setDoc, doc, increment} from "firebase/firestore";
 
 
 const RatingPage = () => {
@@ -17,8 +17,15 @@ const RatingPage = () => {
 	const [hover, setHover] = useState(null);
 	const [comment, setComment] = useState("");
 
-	const handleSubmit = () => {
-
+	const handleSubmit = async () => {
+		const auth = getAuth();
+		const userId = auth.currentUser.uid;
+		let itemRef = doc(db, `reviews/${userId}`);
+		await setDoc(itemRef, {
+			userId: userId,
+			rating: rating,
+			comment: comment
+		}, {merge: true});
 	}
 
 	return (
