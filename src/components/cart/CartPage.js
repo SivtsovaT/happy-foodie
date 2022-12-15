@@ -172,7 +172,6 @@ const CartPage = () => {
 		}
 	}
 	const totalSum = dishes.map(item => item.amount * item.price).reduce((prev, curr) => prev + curr, 0);
-
 	const checkOut = async () => {
 		if (!currentAuth || httpPending) {
 			return;
@@ -180,16 +179,21 @@ const CartPage = () => {
 		setHttpPending(true);
 		try {
 			if (order.length > 0) {
-				const data = await getDocs(collection(db, `users/${currentAuth}/cart`));
-				setHttpPending(false);
-				setOrder(data.docs.map((doc) => ({...doc.data(), id: doc.id, totalPrice: doc.data().price * doc.data().amount})));
-				await setDoc(doc(db, "users", currentAuth), {
-					...order,
-					comment: comment,
-					promoCode: promoCode,
-					totalSum: totalSum
-				}, {merge: true});
-
+				for (let dish of dishes) {
+					const productId = dish.id;
+					let orderRef = doc(db, `users/${currentAuth}/order/${productId}`);
+					setHttpPending(false);
+					await setDoc(orderRef, {
+						...order,
+						comment: comment,
+						promoCode: promoCode,
+						totalSum: totalSum
+					}, {merge: true});
+					let itemRef = doc(db, `users/${currentAuth}/cart/${productId}`);
+					await deleteDoc(itemRef);
+					const data = await getDocs(collection(db, `users/${currentAuth}/cart`));
+					setDishes(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+				}
 			} else {
 				alert('Please check some meals');
 			}
@@ -252,19 +256,6 @@ const CartPage = () => {
 		};
 		getDishes();
 	}, [currentAuth]);
-	///////////////////////////////////
-	const deleteAll = async () => {
-		const auth = getAuth();
-		const userId = auth.currentUser.uid;
-		const products = await collection(db, "users", userId, "cart");
-		for ( let product in products) {
-			let productId = product.id;
-			let itemRef = doc(db, `users/${currentAuth}/cart/${productId}`);
-			await deleteDoc(itemRef);
-			//console.log(product);
-		}
-	}
-
 
 	return (
 		<div className="content">
@@ -275,7 +266,6 @@ const CartPage = () => {
 							<img src={back} alt="back"/>
 						</div>
 					</Link>
-					<button onClick={deleteAll}>delete</button>
 					<div className="delivery">
 						<div className="delivery-header">Delivery to</div>
 						<div className="delivery-address">{userData.region}, {userData.city}, {userData.street}
