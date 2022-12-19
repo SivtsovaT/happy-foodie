@@ -60,11 +60,16 @@ const RatingPage = () => {
 		}
 		let itemRef = doc(db, `reviews/${currentAuth}`);
 		setHttpPending(true);
+		const auth = getAuth();
+		const userPhoto = auth.currentUser.photoURL;
+		const userName = auth.currentUser.displayName;
 		try {
 			await setDoc(itemRef, {
 				userId: currentAuth,
 				rating: rating,
-				comment: comment
+				comment: comment,
+				avatar: userPhoto,
+				userName: userName
 			}, {merge: true});
 			window.location.replace('home');
 

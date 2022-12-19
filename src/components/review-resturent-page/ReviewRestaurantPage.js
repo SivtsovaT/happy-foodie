@@ -18,10 +18,16 @@ const ReviewRestaurantPage = () => {
 		const auth = getAuth();
 		const userId = auth.currentUser.uid;
 		let itemRef = doc(db, `review-restaurant/${userId}`);
+		const userPhoto = auth.currentUser.photoURL;
+		const userName = auth.currentUser.displayName;
+
+
 		await setDoc(itemRef, {
 			userId: userId,
 			rating: rating,
-			comment: comment
+			comment: comment,
+			avatar: userPhoto,
+			userName: userName
 		}, {merge: true});
 		window.location.replace('home');
 	}
@@ -71,7 +77,7 @@ const ReviewRestaurantPage = () => {
 				<textarea className="input-log rating"
 						  type="text"
 						  placeholder="Write"
-						  maxLength="360"
+						  maxLength="300"
 						  value={comment}
 						  onChange={(event) => setComment(event.target.value)}
 				/>
