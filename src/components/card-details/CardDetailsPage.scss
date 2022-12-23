@@ -1,0 +1,17 @@
+.card-details-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 30px;
+	.input-group {
+		//display: flex;
+		//justify-content: space-between;
+		margin-bottom: 36px;
+	}
+	.cart-details-input {
+		height: 58px;
+		margin-bottom: 20px;
+	}
+
+}

@@ -1,3 +1,9 @@
+.content-long {
+	margin: 0 auto;
+	background: radial-gradient(black, #3b1919);
+	max-width: 390px;
+	height: 910px;
+}
 .content-cart {
 	.cart-header {
 		padding-top: 55px;
@@ -247,6 +253,7 @@
 	}
 	.cart-nav {
 		margin-top: 35px;
+		width: 348px;
 	}
 
 	/* width */

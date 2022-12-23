@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import "./AddNewAddressPage.scss";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import back from "../../images/back.png";
 import {getAuth, onAuthStateChanged, updateProfile} from "firebase/auth";
 import {auth} from "../../firebase";
@@ -14,6 +14,8 @@ const AddNewAddressPage = () => {
 	const [region, setRegion] = useState('');
 	const [city, setCity] = useState('');
 	const [street, setStreet] = useState('');
+
+	const navigate = useNavigate();
 
 	const useAuth = () => {
 		const [currentUser, setCurrentUser] = useState();
@@ -71,7 +73,6 @@ const AddNewAddressPage = () => {
 				displayName: editName.valueOf(),
 			});
 			let userId = auth.currentUser.uid;
-			console.log(userId);
 			let userRef = doc(db, 'users/' + userId);
 			setDoc(userRef,{
 				region: region,
@@ -86,12 +87,12 @@ const AddNewAddressPage = () => {
 
 	return (
 		<div className="content">
-			<Link to="/menu" className="link-panel">
+			<div onClick={() => navigate(-1)} className="link-panel">
 				<div className="link-wrapper">
 					<img src={back} alt="back"/>
 				</div>
 				<div className="address-title">Add new address</div>
-			</Link>
+			</div>
 			<div className="add-user-data">
 				<div className="add-user-data_title">Full name</div>
 				<input className="input-log width-295 height-58"

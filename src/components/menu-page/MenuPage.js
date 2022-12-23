@@ -74,7 +74,7 @@ const MenuPage = () => {
 							<li>My Address</li>
 						</Link>
 
-						<Link to={"/profile"} className="menu-link">
+						<Link to={"/payment"} className="menu-link">
 							<li>Payments</li>
 						</Link>
 
@@ -82,7 +82,7 @@ const MenuPage = () => {
 							<li>Orders</li>
 						</Link>
 
-						<Link to={"/profile"} className="menu-link">
+						<Link to={"/reviews"} className="menu-link">
 							<li>About Us</li>
 						</Link>
 
