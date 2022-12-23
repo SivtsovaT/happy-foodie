@@ -17,6 +17,8 @@ import RatingPage from "./components/rating-page/RatingPage";
 import DetailPage from "./components/detail-page/DetailPage";
 import ReviewsPage from "./components/reviews-page/ReviewsPage";
 import ReviewRestaurantPage from "./components/review-resturent-page/ReviewRestaurantPage";
+import OrderPlacedPage from "./components/order-placed-page/OrderPlacedPage";
+import CartNotSetPage from "./components/cart-not-set-page/CartNotSetPage";
 
 const App = () => {
     return (
@@ -38,6 +40,8 @@ const App = () => {
                 <Route path="detail" element={<DetailPage/>}/>
                 <Route path="reviews" element={<ReviewsPage/>}/>
                 <Route path="revres" element={<ReviewRestaurantPage/>}/>
+                <Route path="order" element={<OrderPlacedPage/>}/>
+                <Route path="cartnot" element={<CartNotSetPage/>}/>
 
             </Routes>
         </>

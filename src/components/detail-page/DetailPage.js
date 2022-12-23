@@ -47,7 +47,7 @@ const DetailPage = ({dishDetailTitle, dishDetailPrice, dishDetailDescription, di
 		await setDoc(itemRef,{
 			title: dishDetailTitle,
 			price: dishDetailPrice,
-			amount: detailAmount,
+			amount: increment(detailAmount),
 			image: dishDetailImage,
 		}, {merge: true});
 

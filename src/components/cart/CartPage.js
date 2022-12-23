@@ -85,8 +85,6 @@ const CartPage = () => {
 			setDishes(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
 			setHttpPending(false);
 			setChefsAmount(chefsAmount + 1);
-			setOrder(data.docs.map((doc) => ({...doc.data(), id: doc.id, totalPrice: doc.data().price * doc.data().amount})));
-			setTotalPrice(order.reduce((s, i) => s = s + i.totalPrice, 0));
 		} catch(e) {
 			console.log(e);
 			setHttpPending(false);
@@ -111,8 +109,6 @@ const CartPage = () => {
 			setHttpPending(false);
 			if (chefsAmount > 1) {
 				setChefsAmount(chefsAmount - 1);
-				setOrder(data.docs.map((doc) => ({...doc.data(), id: doc.id, totalPrice: doc.data().price * doc.data().amount})));
-				setTotalPrice(order.reduce((s, i) => s = s + i.totalPrice, 0));
 			}
 			else {
 				const productId = 'zk3Nm7r3JlgDeAjQemCL';
@@ -121,8 +117,6 @@ const CartPage = () => {
 				const data = await getDocs(collection(db, `users/${currentAuth}/cart`));
 				setDishes(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
 				setChefsBurgerVisible(false);
-				setOrder(data.docs.map((doc) => ({...doc.data(), id: doc.id, totalPrice: doc.data().price * doc.data().amount})));
-				setTotalPrice(order.reduce((s, i) => s = s + i.totalPrice, 0));
 			};
 		} catch(e) {
 			console.log(e);
@@ -138,8 +132,6 @@ const CartPage = () => {
 		if (productId == "zk3Nm7r3JlgDeAjQemCL") {
 			setChefsBurgerVisible(false);
 		}
-		setOrder(data.docs.map((doc) => ({...doc.data(), id: doc.id, totalPrice: doc.data().price * doc.data().amount})));
-		setTotalPrice(order.reduce((s, i) => s = s + i.totalPrice, 0));
 	};
 
 	const increaseDish = async (id, title, price, amount, image) => {
@@ -160,8 +152,6 @@ const CartPage = () => {
 			const data = await getDocs(collection(db, `users/${currentAuth}/cart`));
 			setDishes(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
 			setHttpPending(false);
-			setOrder(data.docs.map((doc) => ({...doc.data(), id: doc.id, totalPrice: doc.data().price * doc.data().amount})));
-			setTotalPrice(order.reduce((s, i) => s = s + i.totalPrice, 0));
 
 		} catch(e) {
 			console.log(e);
@@ -179,20 +169,24 @@ const CartPage = () => {
 		setHttpPending(true);
 		try {
 			if (order.length > 0) {
+				let orderRef = doc(db, `users/${currentAuth}/order/order`);
+				setHttpPending(false);
+				await setDoc(orderRef, {
+					...order,
+					comment: comment,
+					promoCode: promoCode,
+					totalSum: totalSum
+				}, {merge: true});
+
 				for (let dish of dishes) {
-					const productId = dish.id;
-					let orderRef = doc(db, `users/${currentAuth}/order/${productId}`);
-					setHttpPending(false);
-					await setDoc(orderRef, {
-						...order,
-						comment: comment,
-						promoCode: promoCode,
-						totalSum: totalSum
-					}, {merge: true});
+					 const productId = dish.id;
 					let itemRef = doc(db, `users/${currentAuth}/cart/${productId}`);
 					await deleteDoc(itemRef);
 					const data = await getDocs(collection(db, `users/${currentAuth}/cart`));
 					setDishes(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+					setTimeout(() => {
+						window.location.replace('/order')
+					}, 1000);
 				}
 			} else {
 				alert('Please check some meals');
