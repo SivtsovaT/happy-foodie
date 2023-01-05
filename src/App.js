@@ -19,6 +19,9 @@ import ReviewsPage from "./components/reviews-page/ReviewsPage";
 import ReviewRestaurantPage from "./components/review-resturent-page/ReviewRestaurantPage";
 import OrderPlacedPage from "./components/order-placed-page/OrderPlacedPage";
 import CartNotSetPage from "./components/cart-not-set-page/CartNotSetPage";
+import PaymentAPage from "./components/paymentA-page/PaymentAPage";
+import CardDetailsPage from "./components/card-details/CardDetailsPage";
+import FavouritesPage from "./components/favourites-page/FavouritesPage";
 
 const App = () => {
     return (
@@ -42,6 +45,9 @@ const App = () => {
                 <Route path="revres" element={<ReviewRestaurantPage/>}/>
                 <Route path="order" element={<OrderPlacedPage/>}/>
                 <Route path="cartnot" element={<CartNotSetPage/>}/>
+                <Route path="payment" element={<PaymentAPage/>}/>
+                <Route path="carddetails" element={<CardDetailsPage/>}/>
+                <Route path="favourites" element={<FavouritesPage/>}/>
 
             </Routes>
         </>

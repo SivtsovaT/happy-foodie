@@ -65,6 +65,20 @@ const DetailPage = ({dishDetailTitle, dishDetailPrice, dishDetailDescription, di
 			}, {merge: true});
 		}
 	}
+
+	const addToFavourites = async () => {
+		const auth = getAuth();
+		let userId = auth.currentUser.uid;
+		let productId = dishDetailId;
+		let itemRef = doc(db, `users/${userId}/favourites/${productId}`);
+
+		await setDoc(itemRef,{
+			title: dishDetailTitle,
+			price: dishDetailPrice,
+			amount: 1,
+			image: dishDetailImage,
+		}, {merge: true});
+	}
 	const chefsBurgerPrice = chefsBurger.price;
 	return (
 		<div className="content">
@@ -72,7 +86,7 @@ const DetailPage = ({dishDetailTitle, dishDetailPrice, dishDetailDescription, di
 				<div onClick={showHome} className="detail-back">
 					<img src={back} alt="back"/>
 				</div>
-				<div className="heart-wrapper">
+				<div onClick={addToFavourites} className="heart-wrapper">
 					<img src={heart_white} alt="cat"/>
 				</div>
 			</div>

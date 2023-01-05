@@ -6,9 +6,13 @@ import creditCard from "../../images/cart-not-set/credit-cart.png";
 import plus from "../../images/cart-not-set/plus.png";
 
 const CartNotSetPage = () => {
+	const addCart = () => {
+		window.location.replace("/carddetails");
+	}
+
 	return (
 		<div className="content">
-			<Link to="/home" className="link-panel">
+			<Link to="/payment" className="link-panel">
 				<div className="reviews_link-wrapper">
 					<img src={back} alt="back"/>
 				</div>
@@ -24,7 +28,7 @@ const CartNotSetPage = () => {
 					<div className="good-day">Today is a good day for you to make a choice</div>
 				</div>
 				<div className="add-card">
-					<button className="btn-add">
+					<button onClick={addCart} className="btn-add">
 						<img src={plus} alt="plus"/>
 					</button>
 					<div className="add-card-title">Add credit card</div>
