@@ -10,7 +10,15 @@ import {doc, getDoc, increment, setDoc} from "firebase/firestore";
 import {db} from "../../firebase";
 import {getAuth} from "firebase/auth";
 
-const DetailPage = ({dishDetailTitle, dishDetailPrice, dishDetailDescription, dishDetailImage, showHome, dishDetailId}) => {
+const DetailPage = ({dishDetailTitle,
+						dishDetailPrice,
+						dishDetailDescription,
+						dishDetailImage,
+						showHome,
+						dishDetailId,
+	                    dishDetailRating,
+	                    dishDetailLikes
+					}) => {
 	const [checked, setChecked] = useState(false);
 	const [chefsBurger, setChefsBurger] = useState([]);
 	const [detailAmount, setDetailAmount] = useState(1);
@@ -98,8 +106,8 @@ const DetailPage = ({dishDetailTitle, dishDetailPrice, dishDetailDescription, di
 				<div className="detail-title">{dishDetailTitle}</div>
 				<div className="review">
 					<img src={star_yellow} alt="star"/>
-					<div className="detail-rating">4.5</div>
-					<div className="detail-total">30+</div>
+					<div className="detail-rating">{dishDetailRating/dishDetailLikes}</div>
+					<div className="detail-total">{dishDetailLikes}</div>
 					<Link to={"/reviews"}>
 						<div className="see-review">See Review</div>
 					</Link>

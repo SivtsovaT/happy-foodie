@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import "./CartPage.scss";
 import {db} from "../../firebase";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import back from "../../images/back.png";
 import {getAuth} from 'firebase/auth';
 import trash from "../../images/cart/trash.png";
@@ -178,7 +178,7 @@ const CartPage = () => {
 				let orderRef = collection(db, `orders`);
 				setHttpPending(false);
 				await addDoc(orderRef, {
-					...order,
+					items: order,
 					comment: comment,
 					promoCode: promoCode,
 					totalSum: totalSum,
@@ -259,16 +259,18 @@ const CartPage = () => {
 		getDishes();
 	}, [currentAuth]);
 
+	const navigate = useNavigate();
+
 
 	return (
 		<div className="content">
 			<div className="content-cart">
 				<div className="cart-header">
-					<Link to="/home" className="cart-wrapper">
+					<div onClick={() => navigate(-1)} className="cart-wrapper">
 						<div className="link-wrapper">
 							<img src={back} alt="back"/>
 						</div>
-					</Link>
+					</div>
 					<div className="delivery">
 						<div className="delivery-header">Delivery to</div>
 						<div className="delivery-address">{userData.region}, {userData.city}, {userData.street}
@@ -285,7 +287,7 @@ const CartPage = () => {
 								</div>
 								<div className="product-data">
 									<div className="product-title">{dish.title}</div>
-									<div className="product-price">${dish.price * dish.amount}</div>
+									<div className="product-price">${(dish.price * dish.amount).toFixed(2)}</div>
 								</div>
 								{ httpPending && <div className="product-total">Saving...</div>}
 								{ !httpPending && <div className="product-total">

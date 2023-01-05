@@ -22,6 +22,7 @@ import CartNotSetPage from "./components/cart-not-set-page/CartNotSetPage";
 import PaymentAPage from "./components/paymentA-page/PaymentAPage";
 import CardDetailsPage from "./components/card-details/CardDetailsPage";
 import FavouritesPage from "./components/favourites-page/FavouritesPage";
+import OrdersPage from "./components/orders-page/OrdersPage";
 
 const App = () => {
     return (
@@ -48,6 +49,7 @@ const App = () => {
                 <Route path="payment" element={<PaymentAPage/>}/>
                 <Route path="carddetails" element={<CardDetailsPage/>}/>
                 <Route path="favourites" element={<FavouritesPage/>}/>
+                <Route path="orders" element={<OrdersPage/>}/>
 
             </Routes>
         </>

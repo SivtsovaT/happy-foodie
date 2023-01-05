@@ -28,6 +28,8 @@ const HomePage = () => {
 	const [dishDetailDescription, setDishDetailDescription] = useState('');
 	const [dishDetailImage, setDishDetailImage] = useState('');
 	const [dishDetailId, setDishDetailId] = useState('');
+	const [dishDetailRating, setDishDetailRating] = useState('');
+	const [dishDetailLikes, setDishDetailLikes] = useState('');
 
 	const showFindInput = () => {
 		setFindInputVisible(true)
@@ -129,7 +131,9 @@ const HomePage = () => {
 		await setDishDetailDescription(docSnap.data().description);
 		await setDishDetailImage(docSnap.data().image);
 		await setDishDetailId(docSnap.data().id);
-		setDishDetailId(productId)
+		await setDishDetailRating(docSnap.data().stars);
+		await setDishDetailLikes(docSnap.data().likesNumber);
+		setDishDetailId(productId);
 		setInvisibleHome(true);
 	}
 
@@ -141,6 +145,8 @@ const HomePage = () => {
 											 dishDetailDescription={dishDetailDescription}
 											 dishDetailImage={dishDetailImage}
 											 dishDetailId={dishDetailId}
+											 dishDetailRating={dishDetailRating}
+											 dishDetailLikes={dishDetailLikes}
 											 showHome={showHome}
 				/>
 			}

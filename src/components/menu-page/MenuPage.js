@@ -78,7 +78,7 @@ const MenuPage = () => {
 							<li>Payments</li>
 						</Link>
 
-						<Link to={"/profile"} className="menu-link">
+						<Link to={"/orders"} className="menu-link">
 							<li>Orders</li>
 						</Link>
 
