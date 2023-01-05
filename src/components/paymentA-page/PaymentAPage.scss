@@ -1,0 +1,136 @@
+.payment-link-wrapper {
+		width: 45px;
+		height: 45px;
+		background: var(--main-dark-violet);
+		border-radius: 10px;
+		margin-top: 40px;
+		margin-left: 22px;
+		margin-bottom: 42px;
+		img {
+			margin-top: 17px;
+			margin-left: 17px;
+		}
+}
+
+.payment-title {
+	margin-left: 52px;
+	margin-top: 54px;
+}
+
+.delivery-method {
+	font-weight: 700;
+	font-size: 24px;
+	margin-left: 24px;
+	margin-bottom: 24px;
+}
+
+.delivery-data {
+	width: 330px;
+	margin-left: 26px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 17px;
+	.delivery-data-descr {
+		font-family: DMSans;
+		font-weight: 400;
+		font-size: 15px;
+		line-height: 152.3%;
+		margin-right: 61px;
+	}
+	.change {
+		text-decoration: none;
+		font-weight: 700;
+		font-size: 14px;
+		color: var(--main-red-color);
+	}
+}
+
+.card-types {
+	display: flex;
+	justify-content: space-evenly;
+	margin-top: 7px;
+	margin-bottom: 25px;
+	.card-type {
+		width: 118px;
+		height: 128px;
+		border-radius: 13px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+		.payment-image-wrapper {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 60px;
+			height: 55px;
+			border-radius: 18px;
+			background: var(--main-dark-violet);
+			border: 1px var(--darkest-grey-color) solid;
+			margin-top: 28px;
+			margin-bottom: 15px;
+			img {
+				width: 41px;
+				height: 41px;
+			}
+		}
+	}
+}
+.add-card-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.payment-system {
+	width: 319px;
+	height: 84px;
+	border-radius: 24px;
+	margin-bottom: 18px;
+	background: radial-gradient(black, #3b1919);
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: row;
+	.payment-system-main {
+		margin-left: 120px;
+	}
+	.payment-system-wrapper {
+		display: flex;
+		flex-direction: column;
+		margin-left: 24px;
+		.card-info {
+			margin-top: 7px;
+			display: flex;
+			.card-info-text {
+				margin-left: 12px;
+				margin-right: 12px;
+			}
+		}
+	}
+}
+
+.btn-payment {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-top: 25px;
+	.pay-now {
+		margin-left: 30px;
+		font-weight: 700;
+		font-size: 14px;
+	}
+	.total-sum {
+		margin-left: 148px;
+		font-weight: 400;
+		font-size: 16px;
+	}
+
+}
+.payment-system-content {
+	margin-top: 18px;
+	height: 190px;
+	overflow: auto;
+}

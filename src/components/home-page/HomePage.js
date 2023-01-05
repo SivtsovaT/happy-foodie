@@ -106,14 +106,6 @@ const HomePage = () => {
 		});
 	}
 
-	const showTopOnly = async () => {
-		const q = query(collection(db, "dishes"), where("top", "==", "true"));
-		const querySnapshot = await getDocs(q);
-		querySnapshot.forEach((doc) => {
-			setDishesTop(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-		});
-	}
-
 	const addProductToCart = async (id, title, price, image) => {
 		const auth = getAuth();
 		let userId = auth.currentUser.uid;
@@ -225,7 +217,8 @@ const HomePage = () => {
 													dish.price,
 													dish.image
 												)}
-														className="btn btn-28">+</button>
+														className="btn btn-28">+
+												</button>
 											</div>
 										</div>
 									</div>
@@ -282,9 +275,11 @@ const HomePage = () => {
 						<div onClick={showFindInput} className="search-wrapper">
 							<img src={search} alt="search"/>
 						</div>
-						<div onClick={showTopOnly} className="nav-image-wrapper">
-							<img src={heart} alt="heart"/>
-						</div>
+						<Link to="/favourites">
+							<div className="nav-image-wrapper">
+								<img src={heart} alt="heart"/>
+							</div>
+						</Link>
 						<div className="nav-image-wrapper">
 							<img src={user} alt="user"/>
 						</div>

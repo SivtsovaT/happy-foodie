@@ -16,7 +16,7 @@ import search from "../../images/nav/search.png";
 import heart from "../../images/nav/heart.png";
 import user_prof from "../../images/nav/user.png";
 import home from "../../images/nav/home-grey.png";
-import {collection, getDocs,deleteDoc, doc, getDoc, setDoc, increment} from "firebase/firestore";
+import {collection, getDocs, deleteDoc, doc, getDoc, setDoc, increment, addDoc, serverTimestamp} from "firebase/firestore";
 import close from "../../images/close.png";
 
 const CartPage = () => {
@@ -85,6 +85,8 @@ const CartPage = () => {
 			setDishes(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
 			setHttpPending(false);
 			setChefsAmount(chefsAmount + 1);
+			await setOrder(data.docs.map((doc) => ({...doc.data(), id: doc.id, amount: doc.data().amount, totalPrice: doc.data().price * doc.data().amount})));
+
 		} catch(e) {
 			console.log(e);
 			setHttpPending(false);
@@ -107,6 +109,7 @@ const CartPage = () => {
 			const data = await getDocs(collection(db, `users/${currentAuth}/cart`));
 			setDishes(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
 			setHttpPending(false);
+			await setOrder(data.docs.map((doc) => ({...doc.data(), id: doc.id, amount: doc.data().amount, totalPrice: doc.data().price * doc.data().amount})));
 			if (chefsAmount > 1) {
 				setChefsAmount(chefsAmount - 1);
 			}
@@ -117,6 +120,7 @@ const CartPage = () => {
 				const data = await getDocs(collection(db, `users/${currentAuth}/cart`));
 				setDishes(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
 				setChefsBurgerVisible(false);
+				await setOrder(data.docs.map((doc) => ({...doc.data(), id: doc.id, amount: doc.data().amount, totalPrice: doc.data().price * doc.data().amount})));
 			};
 		} catch(e) {
 			console.log(e);
@@ -129,6 +133,7 @@ const CartPage = () => {
 		await deleteDoc(itemRef);
 		const data = await getDocs(collection(db, `users/${currentAuth}/cart`));
 		setDishes(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+		await setOrder(data.docs.map((doc) => ({...doc.data(), id: doc.id, amount: doc.data().amount, totalPrice: doc.data().price * doc.data().amount})));
 		if (productId == "zk3Nm7r3JlgDeAjQemCL") {
 			setChefsBurgerVisible(false);
 		}
@@ -152,6 +157,7 @@ const CartPage = () => {
 			const data = await getDocs(collection(db, `users/${currentAuth}/cart`));
 			setDishes(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
 			setHttpPending(false);
+			await setOrder(data.docs.map((doc) => ({...doc.data(), id: doc.id, amount: doc.data().amount, totalPrice: doc.data().price * doc.data().amount})));
 
 		} catch(e) {
 			console.log(e);
@@ -169,24 +175,26 @@ const CartPage = () => {
 		setHttpPending(true);
 		try {
 			if (order.length > 0) {
-				let orderRef = doc(db, `users/${currentAuth}/order/order`);
+				let orderRef = collection(db, `orders`);
 				setHttpPending(false);
-				await setDoc(orderRef, {
+				await addDoc(orderRef, {
 					...order,
 					comment: comment,
 					promoCode: promoCode,
-					totalSum: totalSum
+					totalSum: totalSum,
+					paid: 0,
+					userId: currentAuth,
+					created: serverTimestamp()
 				}, {merge: true});
 
+
 				for (let dish of dishes) {
-					 const productId = dish.id;
+					const productId = dish.id;
 					let itemRef = doc(db, `users/${currentAuth}/cart/${productId}`);
 					await deleteDoc(itemRef);
 					const data = await getDocs(collection(db, `users/${currentAuth}/cart`));
 					setDishes(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
-					setTimeout(() => {
-						window.location.replace('/order')
-					}, 1000);
+					window.location.replace('/payment')
 				}
 			} else {
 				alert('Please check some meals');
@@ -250,6 +258,7 @@ const CartPage = () => {
 		};
 		getDishes();
 	}, [currentAuth]);
+
 
 	return (
 		<div className="content">
@@ -353,7 +362,7 @@ const CartPage = () => {
 
 				<div onClick={checkOut} className="btn btn-322 check">
 					<div className="checkout">Check out</div>
-								<div  className="check-price">${totalSum}</div>
+					<div  className="check-price">${totalSum}</div>
 
 
 				</div>
