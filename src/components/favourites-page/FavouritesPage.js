@@ -6,6 +6,8 @@ import {db} from "../../firebase";
 import trash from "../../images/cart/trash.png";
 import plus from "../../images/cart/plus.png";
 import box from "../../images/nav/cart-grey.png";
+import back from "../../images/back.png";
+import {Link} from "react-router-dom";
 
 const FavouritesPage = () => {
 	const [dishes, setDishes] = useState([]);
@@ -73,40 +75,49 @@ const FavouritesPage = () => {
 
 	return (
 		<div className="content">
-			{
-				dishes.map(dish => {
-					return (
-						<div key={dish.id} className="product-wrapper">
-							<div className="product-image">
-								<img className="cart-image" src={dish.image} alt="burger"/>
+			<Link to="/home"  className="link-panel">
+				<div className="payment-link-wrapper">
+					<img src={back} alt="back"/>
+				</div>
+				<div className="payment-title">Payment Method</div>
+			</Link>
+			<div className="favourites-list">
+				{
+					dishes.map(dish => {
+						return (
+							<div  key={dish.id} className="product-wrapper">
+								<div className="product-image">
+									<img className="cart-image" src={dish.image} alt="burger"/>
+								</div>
+								<div className="product-data">
+									<div className="product-title">{dish.title}</div>
+									<div className="product-price">${dish.price * dish.amount}</div>
+								</div>
+								{ httpPending && <div className="product-total">Saving...</div>}
+								{ !httpPending && <div className="product-total">
+									<button style={{background: "#27252a"}} className="btn btn-28">
+										<img onClick={() => deleteDish(dish.id)} src={trash} alt="trash"/>
+
+									</button>
+									<button onClick={() => addProductToCart(
+										dish.id,
+										dish.title,
+										dish.price,
+										dish.image
+									)}
+											className="btn btn-28">+
+									</button>
+
+								</div>
+
+								}
 							</div>
-							<div className="product-data">
-								<div className="product-title">{dish.title}</div>
-								<div className="product-price">${dish.price * dish.amount}</div>
-							</div>
-							{ httpPending && <div className="product-total">Saving...</div>}
-							{ !httpPending && <div className="product-total">
-								<button style={{background: "#27252a"}} className="btn btn-28">
-									<img onClick={() => deleteDish(dish.id)} src={trash} alt="trash"/>
 
-								</button>
-								<button onClick={() => addProductToCart(
-									dish.id,
-									dish.title,
-									dish.price,
-									dish.image
-								)}
-										className="btn btn-28">+
-								</button>
+						)
+					})
+				}
 
-							</div>
-
-							}
-						</div>
-
-					)
-				})
-			}
+			</div>
 		</div>
 	)
 }

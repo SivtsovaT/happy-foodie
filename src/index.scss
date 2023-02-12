@@ -32,6 +32,7 @@
   --darkest-grey-color: #555555;
   --main-orange-color: #FE724C;
   --middle-grey-color: #7F7D92;
+  --main-black-color: #3D3D3D;
 }
 
 
@@ -73,6 +74,12 @@ body {
 .btn-28 {
   width: 28px;
   height: 28px;
+  border-radius: 8px;
+
+}
+.btn-50 {
+  width: 50px;
+  height: 35px;
   border-radius: 8px;
 
 }
