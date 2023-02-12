@@ -13,7 +13,7 @@ import checked from "../../images/paymentA/checked.png";
 import mastercard from "../../images/paymentA/mastercard.png";
 import visa from "../../images/paymentA/visa.png";
 
-const PaymentAPage = ({showCart}) => {
+const PaymentAPage = () => {
 	const [userData, setUserData] = useState([]);
 	const [currentAuth, setCurrentAuth] = useState(null);
 	const [activeClassCredit, setActiveClassCredit] = useState(true);
@@ -165,7 +165,7 @@ const PaymentAPage = ({showCart}) => {
 
 	return(
 		<div className="content">
-			<Link to="/cart" onClick={showCart} className="link-panel">
+			<Link to="/cart"  className="link-panel">
 				<div className="payment-link-wrapper">
 					<img src={back} alt="back"/>
 				</div>
